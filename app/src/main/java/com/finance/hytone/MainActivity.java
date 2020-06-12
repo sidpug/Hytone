@@ -3,6 +3,7 @@ package com.finance.hytone;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,9 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,8 +29,9 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     String auth;
     SignInButton signInButton;
     LoginButton loginButton;
+    ShareDialog shareDialog;
 
     private GoogleSignInClient mGoogleSignInClient;
 
@@ -82,7 +88,26 @@ public class MainActivity extends AppCompatActivity {
 
         LoginManager.getInstance().logInWithPublishPermissions(
                 MainActivity.this,
-                Arrays.asList("publish_actions"));
+                Collections.singletonList("publish_actions"));
+        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
+        Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
+
+        shareDialog = new ShareDialog(this);
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                    .setShareHashtag(new ShareHashtag.Builder()
+                            .setHashtag("#ConnectTheWorld")
+                            .build())
+                    .build();
+            shareDialog.show(linkContent);
+        }
+
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();
+        /*ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
+        shareButton.setShareContent(content);*/
 
         //FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -90,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
 
         //Application context, Activity context Context docs read,
 
