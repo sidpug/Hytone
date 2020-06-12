@@ -40,8 +40,10 @@ public class SplashPermission2 extends AppCompatActivity {
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Permission.permission(SplashPermission2.this);
-                startActivity(new Intent(SplashPermission2.this, MainActivity.class));
+                if (Permission.checkAllPermissions(SplashPermission2.this))
+                    startActivity(new Intent(SplashPermission2.this, MainActivity.class));
+                else
+                    Permission.permission(SplashPermission2.this);
             }
         });
 

@@ -9,8 +9,8 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 
 public class Permission {
-    static void permission(Activity activity) {
-        if (checkAllPermissions(activity)) {//not granted, this case can arise only for >=23(Marshmallow)
+    public static void permission(Activity activity) {
+        if (!checkAllPermissions(activity)) {//not granted, this case can arise only for >=23(Marshmallow)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 Log.e("log_case", "requseting");
                 ActivityCompat.requestPermissions(activity,
@@ -29,29 +29,52 @@ public class Permission {
     private static String[] getPermissions() {
         return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_BACKGROUND_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CONTACTS, Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS,
-                Manifest.permission.CAMERA, Manifest.permission.MEDIA_CONTENT_CONTROL, Manifest.permission.RECEIVE_SMS, Manifest.permission.FOREGROUND_SERVICE};
+                Manifest.permission.CAMERA, Manifest.permission.RECEIVE_SMS, Manifest.permission.FOREGROUND_SERVICE};
     }
 
     public static boolean checkAllPermissions(Activity activity) {
-
+        //returns true if all permissions granted
+        int c = 0;
         boolean b = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED;
         }
+        Log.e("c" + (c++), "" + b);
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_PHONE_NUMBERS) == PackageManager.PERMISSION_GRANTED;
         }
+        Log.e("c" + (c++), "" + b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
-        b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.MEDIA_CONTENT_CONTROL) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
+//        b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.MEDIA_CONTENT_CONTROL) == PackageManager.PERMISSION_GRANTED;
+//        Log.e("c"+(c++),""+b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.FOREGROUND_SERVICE) == PackageManager.PERMISSION_GRANTED;
         }
+        Log.e("c" + (c++), "" + b);
+
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+        Log.e("c" + (c++), "" + b);
+
         return b;
     }
 
