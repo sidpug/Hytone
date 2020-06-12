@@ -11,6 +11,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -19,6 +25,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     //private Context ctx;
     String auth;
     SignInButton signInButton;
+    LoginButton loginButton;
+
     private GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -50,8 +59,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.sign_in_fb);
+        //loginButton.setReadPermissions(Arrays.asList(EMAIL));
 
-        //findViewById(R.id.sign_in_button).setOnClickListener(this);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
+
+        LoginManager.getInstance().logInWithPublishPermissions(
+                MainActivity.this,
+                Arrays.asList("publish_actions"));
+
         //FacebookSdk.sdkInitialize(getApplicationContext());
 
         //startActivity(new Intent(MainActivity.this,FacebookPermission.class));
@@ -61,17 +93,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Application context, Activity context Context docs read,
-        //Output o = new Output();
+
         ContactFetch cf = new ContactFetch();
         List<ContactModel> cc = cf.getContacts(MainActivity.this);
         for (int i = 0; i < cc.size(); i++) {
             Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
         }
-        /**try {
-         o.getout(MainActivity.this);
-         } catch (IOException e) {
-         e.printStackTrace();
-         }*/
+
     }
 
     void signIn() {
@@ -123,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void installedApps() {
 
         List<PackageInfo> packList = getPackageManager().getInstalledPackages(0);
@@ -130,9 +159,8 @@ public class MainActivity extends AppCompatActivity {
             PackageInfo packInfo = packList.get(i);
             if ((packInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
                 String appName = packInfo.applicationInfo.loadLabel(getPackageManager()).toString();
-                Log.e("App № " + Integer.toString(i), appName);
+                Log.e("App № " + i, appName);
             }
         }
     }
-
 }
