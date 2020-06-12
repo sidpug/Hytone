@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     LoginButton loginButton;
     ShareDialog shareDialog;
 
-    private GoogleSignInClient mGoogleSignInClient;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
 //        Log.e(TAG+"auth",auth);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
