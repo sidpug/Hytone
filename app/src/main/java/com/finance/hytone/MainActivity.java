@@ -121,7 +121,11 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < cc.size(); i++) {
             Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
         }
-
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     void signIn() {
@@ -185,4 +189,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
