@@ -60,28 +60,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        CallbackManager callbackManager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.sign_in_fb);
+        final CallbackManager callbackManager = CallbackManager.Factory.create();
+        loginButton = findViewById(R.id.sign_in_fb);
         //loginButton.setReadPermissions(Arrays.asList(EMAIL));
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                LoginManager.getInstance().logInWithPublishPermissions(
-                        MainActivity.this,
-                        Collections.singletonList("publish_actions"));
-            }
+            public void onClick(View v) {
+                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        LoginManager.getInstance().logInWithPublishPermissions(
+                                MainActivity.this,
+                                Collections.singletonList("publish_actions"));
+                    }
 
-            @Override
-            public void onCancel() {
-                // App code
-            }
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
 
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                });
             }
         });
+
 
 
 //        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
@@ -159,6 +165,7 @@ private void doContactWork() {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    installedApps();
                     pd.dismiss();
                     //doContactWork();
                 }
@@ -193,6 +200,7 @@ private void doContactWork() {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
+
     }
 
 
@@ -214,6 +222,7 @@ private void doContactWork() {
         if (account == null)
             Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
         else {
+            //startActivity(new Intent(MainActivity.this,Form.class));
             Log.e("acctName", account.getDisplayName() + "");
             Log.e("acctEmail", account.getEmail() + "");
         }
