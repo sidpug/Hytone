@@ -8,12 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,7 +31,6 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         doSmsWork();
-        //donext();
+        donext();
     }
     public  void donext(){
         signInButton = findViewById(R.id.sign_in_button);
@@ -70,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                // App code
+                LoginManager.getInstance().logInWithPublishPermissions(
+                        MainActivity.this,
+                        Collections.singletonList("publish_actions"));
             }
 
             @Override
@@ -84,9 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LoginManager.getInstance().logInWithPublishPermissions(
-                MainActivity.this,
-                Collections.singletonList("publish_actions"));
+
 //        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
   //      Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
 
@@ -107,21 +104,19 @@ public class MainActivity extends AppCompatActivity {
         /*ShareButton shareButton = (ShareButton)findViewById(R.id.fb_share_button);
         shareButton.setShareContent(content);*/
 
-        //FacebookSdk.sdkInitialize(getApplicationContext());
-
         //startActivity(new Intent(MainActivity.this,FacebookPermission.class));
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();*/
 
         //Application context, Activity context Context docs read,
 
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+       /* signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
-        });
+        });*/
     }
     ProgressDialog pd;
     private void doSmsWork() {
@@ -224,7 +219,6 @@ private void doContactWork() {
         }
     }
 
-
     public void installedApps() {
 
         List<PackageInfo> packList = getPackageManager().getInstalledPackages(0);
@@ -236,6 +230,4 @@ private void doContactWork() {
             }
         }
     }
-
-
 }
