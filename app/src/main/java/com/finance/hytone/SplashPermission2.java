@@ -23,7 +23,8 @@ public class SplashPermission2 extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SplashPermission2.this, SplashPermission.class));
+                //startActivity(new Intent(SplashPermission2.this, SplashPermission.class));
+                finish();
             }
         });
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

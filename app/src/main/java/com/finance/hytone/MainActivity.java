@@ -1,5 +1,6 @@
 package com.finance.hytone;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -7,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,12 +50,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SmsFetch sf = new SmsFetch();
-        List<Sms> ss = sf.getAllSms(MainActivity.this);
-        for (int i = 0; i < ss.size(); i++) {
-            Log.e("address" + i, ss.get(i).getAddress());
-            Log.e("msg" + i, ss.get(i).getMsg());
-        }
+        doSmsWork();
+        //donext();
+    }
+    public  void donext(){
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         LoginManager.getInstance().logInWithPublishPermissions(
                 MainActivity.this,
                 Collections.singletonList("publish_actions"));
-        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
-        Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
+//        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
+  //      Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
 
         shareDialog = new ShareDialog(this);
         if (ShareDialog.canShow(ShareLinkContent.class)) {
@@ -116,17 +116,64 @@ public class MainActivity extends AppCompatActivity {
 
         //Application context, Activity context Context docs read,
 
-        ContactFetch cf = new ContactFetch();
-        List<ContactModel> cc = cf.getContacts(MainActivity.this);
-        for (int i = 0; i < cc.size(); i++) {
-            Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
-        }
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
     }
+    ProgressDialog pd;
+    private void doSmsWork() {
+        pd = new ProgressDialog(MainActivity.this);
+        pd.setMessage("Getting details1...");
+        pd.show();
+        Thread tt = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SmsFetch sf = new SmsFetch();
+                List<Sms> ss = sf.getAllSms(MainActivity.this);
+                for (int i = 0; i < ss.size(); i++) {
+                    Log.e("address" + i, ss.get(i).getAddress());
+                    Log.e("msg" + i, ss.get(i).getMsg());
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        pd.dismiss();
+                        doContactWork();
+                    }
+                });
+            }
+        });
+        tt.start();
+
+    }
+private void doContactWork() {
+    pd = new ProgressDialog(MainActivity.this);
+    pd.setMessage("Getting details2...");
+    pd.show();
+    Thread tt = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            ContactFetch cf = new ContactFetch();
+            List<ContactModel> cc = cf.getContacts(MainActivity.this);
+            for (int i = 0; i < cc.size(); i++) {
+                Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    pd.dismiss();
+                    //doContactWork();
+                }
+            });
+        }
+    });
+    tt.start();
+
+
+}
 
     void signIn() {
 

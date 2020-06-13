@@ -21,6 +21,7 @@ public class SmsFetch {
 
         if (c.moveToFirst()) {
             for (int i = 0; i < totalSMS; i++) {
+//            for (int i = 0; i < 5; i++) {
 
                 objSms = new Sms();
                 objSms.setId(c.getString(c.getColumnIndexOrThrow("_id")));
