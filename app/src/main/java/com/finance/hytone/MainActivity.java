@@ -8,10 +8,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -30,6 +36,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Collections;
 import java.util.List;
@@ -236,6 +246,89 @@ private void doContactWork() {
             }
         }
     }
+    private void getChapterContents() {
+//
+        ErrorLogger.log("params", subscription_id);
+        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+        Call<JsonObject> call = null;
+        try {
 
+
+            call = service.getChapterProducts(Helper.getToken(ChapterHome.this), subscription_id, chapter_id);
+            call.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    //findViewById(R.id.loadingContainer).setVisibility(GONE);
+
+                    int rescode = response.code();
+                    if (rescode != 200) {
+                        HttpResponseUtils.showBasicResponseLogs(response);
+                        HttpResponseUtils.processHeaderCode(ChapterHome.this, rescode);
+                        return;
+                    }
+                    ErrorLogger.log("passsed7", "here");
+                    HttpResponseUtils.showBasicResponseLogs(response);
+                    try {
+                        String resBody = response.body().toString();
+                        //Toast.makeText(ChapterHome.this, resBody, Toast.LENGTH_SHORT).show();
+
+                        JSONObject jo = new JSONObject(resBody);
+                        int response_code = Integer.parseInt(jo.getString("response_code"));
+
+                        // if (response_code == 200) {
+
+                        JSONObject response_data = jo.getJSONObject("response_data");
+                        JSONArray products = response_data.optJSONArray("products");
+                        JSONObject chapter_details = response_data.optJSONObject("chapter");
+                        JSONObject up_next = response_data.optJSONObject("up_next");
+                        ErrorLogger.log("ss0", "" + products);
+                        ErrorLogger.log("ss1", "" + chapter_details);
+                        ErrorLogger.log("ss2", "" + up_next);
+
+                        //imgTitle, llProgress, tvProgress;
+                        //id  icon name  coverage_percent
+                        String iconUrl = chapter_details.getString("icon");
+                        if (iconUrl != null)
+                            try {
+                                Picasso.get().load(iconUrl).placeholder(R.drawable.ic_phyiscs_icon).into((ImageView) findViewById(R.id.imgTitle));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        float progress = Float.parseFloat(chapter_details.getString("coverage_percent"));
+                        LinearLayout llProgress = findViewById(R.id.llProgress);
+                        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                                0,
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                progress
+                        );
+                        llProgress.setLayoutParams(param);
+                        ((TextView) findViewById(R.id.tvProgress)).setText(progress + "%");
+
+                        handleProducts(products);
+                        //}
+                        //  else
+//                        {
+//                            HttpResponseUtils.processBodyResponseCode(SubjectHomeActivity.this,response_code,jo);
+//                        }
+
+                    } catch (Exception e) {
+                        Helper.showdialog(ChapterHome.this, false, "Something went wrong. " + e.getMessage(), "" + e.toString());
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    //findViewById(R.id.loadingContainer).setVisibility(GONE);
+                    HttpResponseUtils.handleFailure(ChapterHome.this, call, t);
+                }
+            });
+
+        } catch (Exception e) {
+            Helper.showdialog(ChapterHome.this, false, "Error occurred", "" + e);
+            e.printStackTrace();
+        }
+    }
 
 }
