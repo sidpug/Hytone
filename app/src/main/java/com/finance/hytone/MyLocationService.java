@@ -81,7 +81,7 @@ public class MyLocationService extends Service {
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Foreground Service")
                 .setContentText(input)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.mipmap.ic_launch_round)
                 .setContentIntent(pendingIntent)
                 .build();
         startForeground(1, notification);

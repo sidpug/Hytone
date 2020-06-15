@@ -17,36 +17,41 @@ public class SplashPermission2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission2);
-        final Button back = findViewById(R.id.back), accept = findViewById(R.id.allow);
-        CheckBox checkBox = findViewById(R.id.checkBox);
-        accept.setEnabled(false);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(SplashPermission2.this, SplashPermission.class));
-                finish();
-            }
-        });
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    accept.setEnabled(true);
-                } else
-                    accept.setEnabled(false);
 
-            }
-        });
 
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Permission.checkAllPermissions(SplashPermission2.this))
-                    startActivity(new Intent(SplashPermission2.this, MainActivity.class));
-                else
-                    Permission.permission(SplashPermission2.this);
-            }
-        });
+
+            final Button back = findViewById(R.id.back), accept = findViewById(R.id.allow);
+            CheckBox checkBox = findViewById(R.id.checkBox);
+            accept.setEnabled(false);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //startActivity(new Intent(SplashPermission2.this, SplashPermission.class));
+                    finish();
+                }
+            });
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        accept.setEnabled(true);
+                    } else
+                        accept.setEnabled(false);
+
+                }
+            });
+
+            accept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Helper.putAccepted(SplashPermission2.this, true);
+                    if (Permission.checkAllPermissions(SplashPermission2.this)) {
+
+                        startActivity(new Intent(SplashPermission2.this, MainActivity.class));
+                    } else
+                        Permission.permission(SplashPermission2.this);
+                }
+            });
 
     }
 

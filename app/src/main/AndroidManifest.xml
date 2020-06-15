@@ -10,7 +10,7 @@
     <uses-permission-sdk-23 android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission-sdk-23 android:name="android.permission.RECEIVE_SMS" />
     <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_NUMBERS" /> <!-- <uses-permission-sdk-23 android:name="android.permission.MEDIA_CONTENT_CONTROL"/> -->
+    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
     <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
     <uses-permission-sdk-23 android:name="android.permission.READ_SMS" />
@@ -20,14 +20,24 @@
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launch"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launch_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Form"></activity>
-        <activity android:name=".SplashPermission2" />
-        <activity android:name=".SplashPermission">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup,android:usesCleartextTraffic"
+        >
+        <activity android:name=".Form"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".SplashPermission2"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".SplashPermission"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +45,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FacebookPermission" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            />
 
         <provider
             android:name="com.facebook.FacebookContentProvider"

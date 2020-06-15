@@ -13,6 +13,10 @@ public class SplashPermission extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission);
+        if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
+            startActivity(new Intent(SplashPermission.this, MainActivity.class));
+            finish();
+        }
         Button nxt = findViewById(R.id.next);
         nxt.setOnClickListener(new View.OnClickListener() {
             @Override

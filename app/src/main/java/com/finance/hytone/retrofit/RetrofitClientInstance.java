@@ -14,8 +14,7 @@ public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
 
-//    private static final String BASE_URL = "https://crm.edudigm.com/";
-    private static final String BASE_URL = "http://ekl.edudigm.com/";
+    private static final String BASE_URL = "http://www.dchosting.in/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
@@ -27,6 +26,27 @@ public class RetrofitClientInstance {
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(60, TimeUnit.SECONDS)
+                    .build();
+
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(okHttpClient)
+//                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+        }
+        return retrofit;
+    }
+public static Retrofit getRetrofitInstanceForFile() {
+        if (retrofit == null) {
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+
+            OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                    .connectTimeout(10, TimeUnit.MINUTES)
+                    .readTimeout(10, TimeUnit.MINUTES)
+                    .writeTimeout(10, TimeUnit.MINUTES)
                     .build();
 
             retrofit = new Retrofit.Builder()

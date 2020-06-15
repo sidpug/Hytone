@@ -30,9 +30,10 @@ public interface GetDataService {
     Call<JsonObject> getLoginResponse(@Field("mobile") String mobile, @Field("password") String password);
 
 
-    @FormUrlEncoded
-    @POST("/api/some-endpoint")
-    Call<JsonObject> getQuestionList(@Header("Authorization") String auth, @Field("id") String east_id, @Field("device_type") String device_type);
+    @Multipart
+    @POST("/apis2/upload.php")
+    Call<String> upload(@Part MultipartBody.Part file);
+
 
 
 }

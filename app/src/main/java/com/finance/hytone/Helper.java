@@ -16,6 +16,12 @@ import androidx.core.app.ActivityCompat;
 
 import com.finance.hytone.constants.Constants;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Helper {
 
     private static final String NAME = "user_data";
@@ -121,6 +127,25 @@ public class Helper {
         return sp.getInt("login_status", 0);
     }
 
+    public static void log(String tag, String val) {
+        Log.e(tag, val);
+    }
+
+    public static void showDialogUIThread(final Activity activity, final boolean b, final String title, final String s) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                AlertDialog.Builder adb = new AlertDialog.Builder(activity);
+                adb.setTitle(title);
+                adb.setMessage(s);
+                adb.setPositiveButton("OK", null);
+                adb.setCancelable(b);
+                adb.show();
+            }
+        });
+    }
+
 
     /*public static void logout(Activity assignmentResultActivity) {
         //if (isConnected(assignmentResultActivity.getApplicationContext())) {
@@ -162,4 +187,67 @@ public class Helper {
 //            adb.show();
 //        }
     }*/
+//    public static boolean addToTextFile(String fullPath, String data){
+//        if (new File(fullPath).exists())
+//        {
+//            try {
+//                BufferedWriter fw = new BufferedWriter(new FileWriter(fullPath));
+//                PrintWriter pw = new PrintWriter(fw);
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+
+    public static void putString(Context cc, String key, String value) {
+        SharedPreferences.Editor spe = cc.getSharedPreferences(NAME, Context.MODE_PRIVATE).edit();
+        spe.putString(key, value);
+        spe.commit();
+    }
+
+    public static String getString(Context cc, String key, String defValue) {
+        SharedPreferences sp = cc.getSharedPreferences(NAME, Context.MODE_PRIVATE);
+        return sp.getString(key, defValue);
+
+    }
+
+    public static void putFname(Context cc, String val) {
+        putString(cc, "det_fname", val);
+    }
+    public static String getFname(Context cc) {
+        return getString(cc, "det_fname", "");
+    }
+
+    public static void putEmail(Context cc, String val) {
+        putString(cc, "det_email", val);
+    }
+    public static String getEmail(Context cc) {
+        return getString(cc, "det_email", "");
+    }
+    public static void putLname(Context cc, String val) {
+        putString(cc, "det_lname", val);
+    }
+    public static String getLname(Context cc) {
+        return getString(cc, "det_lname", "");
+    }
+    public static void putPhone(Context cc, String val) {
+        putString(cc, "det_phone", val);
+    }
+    public static String getPhone(Context cc) {
+        return getString(cc, "det_phone", "");
+    }
+    public static void putPincode(Context cc, String val) {
+        putString(cc, "det_pin", val);
+    }
+    public static String getPincode(Context cc) {
+        return getString(cc, "det_pin", "");
+    }
+
+    public static void putAccepted(Context splashPermission2, boolean b) {
+        putString(splashPermission2,"is_accepted","true");
+    }
+    public static boolean isAccepted(Context splashPermission2) {
+        return getString(splashPermission2,"is_accepted","").equals("true");
+    }
 }
