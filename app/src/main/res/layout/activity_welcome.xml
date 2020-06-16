@@ -4,28 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/perm1"
-    android:orientation="vertical"
-    tools:context=".SplashPermission">
+    tools:context=".Welcome">
 
-    <Button
-        android:id="@+id/next"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="52dp"
-        android:backgroundTint="#5352ED"
-        android:fontFamily="@font/hind_bold"
-        android:shape="ring"
-        android:text="Next"
-        android:textColor="#FFFFFF"
-        android:visibility="visible"
+        android:layout_height="0dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="120dp"
+        android:alpha="0.2"
+        android:contentDescription="@string/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText"
-        tools:visibility="visible" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/ic_launch_foreground"
+        tools:srcCompat="@mipmap/ic_launch_foreground" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,26 +8,6 @@
     tools:context=".SplashPermission2">
 
     <Button
-        android:id="@+id/back"
-        android:layout_width="0dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="52dp"
-        android:backgroundTint="#5352ED"
-        android:fontFamily="@font/hind_bold"
-        android:shape="ring"
-        android:text="Back"
-        android:textColor="#FFFFFF"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="HardcodedText"
-        tools:visibility="visible" />
-
-    <Button
         android:id="@+id/allow"
         android:layout_width="0dp"
         android:layout_height="53dp"
@@ -47,19 +27,4 @@
         tools:ignore="HardcodedText"
         tools:visibility="visible" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-
-        android:layout_width="0dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="0dp"
-        android:buttonTint="#000000"
-        android:text="I, hereby agree to the Terms and Conditions and Privacy Policy."
-        app:layout_constraintBottom_toTopOf="@+id/allow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

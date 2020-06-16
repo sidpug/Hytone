@@ -7,5 +7,7 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="Pincode">Pincode</string>
     <string name="submit">Submit</string>
+    <string name="background">background</string>
+
 
 </resources>
