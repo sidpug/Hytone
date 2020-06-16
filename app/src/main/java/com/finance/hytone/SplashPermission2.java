@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,20 +17,7 @@ public class SplashPermission2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission2);
 
-        final Button accept = findViewById(R.id.allow);
-        CheckBox checkBox = findViewById(R.id.checkBox);
-        accept.setEnabled(false);
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    accept.setEnabled(true);
-                } else
-                    accept.setEnabled(false);
-
-            }
-        });
-
+        Button accept = findViewById(R.id.allow);
         accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +31,6 @@ public class SplashPermission2 extends AppCompatActivity {
         });
 
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1) {// If request is cancelled, the result arrays are empty.
@@ -58,14 +42,11 @@ public class SplashPermission2 extends AppCompatActivity {
                 Log.e("log_case2", "GRANTED!");
 
             } else {
-
                 // permission denied, boo! Disable the
                 // functionality that depends on this permission.
                 Toast.makeText(SplashPermission2.this, "One or more Permissions denied", Toast.LENGTH_SHORT).show();
                 Log.e("log_case3", "NOT GRANTED!");
-
             }
-
             // other 'case' lines to check for other
             // permissions this app might request
         }
