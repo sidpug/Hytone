@@ -12,10 +12,6 @@ import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import android.widget.Toast;
 
@@ -28,16 +24,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+import com.finance.hytone.model.ContactModel;
 import com.finance.hytone.constants.Constants;
 import com.finance.hytone.constants.HttpResponseUtils;
+import com.finance.hytone.model.SmsModel;
 import com.finance.hytone.retrofit.GetDataService;
 import com.finance.hytone.retrofit.RetrofitClientInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -47,17 +40,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.JsonObject;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -178,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     SmsFetch sf = new SmsFetch();
-                    List<Sms> ss = sf.getAllSms(MainActivity.this);
+                    List<SmsModel> ss = sf.getAllSms(MainActivity.this);
 
                     final String fullPath =  getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath()+File.separator+ "smslogs"+placeholder+".txt";
                     File ff = new File(fullPath);

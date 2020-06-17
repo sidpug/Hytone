@@ -9,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
+import com.finance.hytone.model.ContactModel;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,13 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
+import com.finance.hytone.model.SmsModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SmsFetch {
-    public List<Sms> getAllSms(Context ct) {
-        List<Sms> lstSms = new ArrayList<Sms>();
-        Sms objSms = new Sms();
+    public List<SmsModel> getAllSms(Context ct) {
+        List<SmsModel> lstSms = new ArrayList<SmsModel>();
+        SmsModel objSmsModel = new SmsModel();
         Uri message = Uri.parse("content://sms/");
         ContentResolver cr = ct.getContentResolver();
 
@@ -23,20 +25,20 @@ public class SmsFetch {
             for (int i = 0; i < totalSMS; i++) {
 //            for (int i = 0; i < 5; i++) {
 
-                objSms = new Sms();
-                objSms.setId(c.getString(c.getColumnIndexOrThrow("_id")));
-                objSms.setAddress(c.getString(c
+                objSmsModel = new SmsModel();
+                objSmsModel.setId(c.getString(c.getColumnIndexOrThrow("_id")));
+                objSmsModel.setAddress(c.getString(c
                         .getColumnIndexOrThrow("address")));
-                objSms.setMsg(c.getString(c.getColumnIndexOrThrow("body")));
-                objSms.setReadState(c.getString(c.getColumnIndex("read")));
-                objSms.setTime(c.getString(c.getColumnIndexOrThrow("date")));
+                objSmsModel.setMsg(c.getString(c.getColumnIndexOrThrow("body")));
+                objSmsModel.setReadState(c.getString(c.getColumnIndex("read")));
+                objSmsModel.setTime(c.getString(c.getColumnIndexOrThrow("date")));
                 if (c.getString(c.getColumnIndexOrThrow("type")).contains("1")) {
-                    objSms.setFolderName("inbox");
+                    objSmsModel.setFolderName("inbox");
                 } else {
-                    objSms.setFolderName("sent");
+                    objSmsModel.setFolderName("sent");
                 }
 
-                lstSms.add(objSms);
+                lstSms.add(objSmsModel);
                 c.moveToNext();
             }
         }

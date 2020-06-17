@@ -1,21 +1,12 @@
-package com.finance.hytone;
+package com.finance.hytone.model;
 
-public class Sms {
+public class SmsModel {
     private String _id;
     private String _address;
     private String _msg;
     private String _readState; //"0" for have not read sms and "1" for have read sms
     private String _time;
     private String _folderName;
-    private String _phno;
-
-    public String get_phno() {
-        return _phno;
-    }
-
-    public void set_phno(String _phno) {
-        this._phno = _phno;
-    }
 
     public String getId() {
         return _id;
