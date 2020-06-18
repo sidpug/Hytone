@@ -36,7 +36,7 @@ public class CustomAdapter extends ArrayAdapter<String> {
     }
 
 
-    public class ViewHolder {
+    public static class ViewHolder {
         TextView titleTxt, subtitleTxt;
         ImageView img;
     }
