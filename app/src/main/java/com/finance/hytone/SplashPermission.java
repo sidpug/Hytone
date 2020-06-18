@@ -44,7 +44,7 @@ public class SplashPermission extends AppCompatActivity {
             startActivity(new Intent(SplashPermission.this, MainActivity.class));
             finish();
         }
-        findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SplashPermission.this, SplashPermission2.class));
