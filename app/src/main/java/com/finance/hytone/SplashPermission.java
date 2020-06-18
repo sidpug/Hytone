@@ -64,20 +64,22 @@ public class SplashPermission extends AppCompatActivity {
     }
     void add(ArrayList<String> title,ArrayList<String> subtitle, ArrayList<Integer> img)
     {
-        //img.add(R.drawable.);
-        //perm = new ArrayList<>();
+        img.add(R.drawable.sms);
         title.add("Sms");
         subtitle.add("Read and receive SMS to understand\n" +
                 "your income and spending patters for\n" +
                 "determining your credit limit");
+        img.add(R.drawable.location);
         title.add("Location");
         subtitle.add("Collect and monitor your device location\n" +
                 "to provide serviceability of your loan\n" +
                 "application and customized offers");
+        img.add(R.drawable.contact);
         title.add("Contacts");
         subtitle.add("Collect contacts information to detect\n" +
                 "references and auto-fill the data during\n" +
                 "your loan application");
+        img.add(R.drawable.phone);
         title.add("Phone");
         subtitle.add("Collect hardware information, OS and \n" +
                 "version, unique device identifier, wifi \n" +
@@ -85,13 +87,16 @@ public class SplashPermission extends AppCompatActivity {
                 "information to prevent fraud by uniquely\n" +
                 "identifying the devices and restricting \n" +
                 "unauthorized devices to act on your behalf");
+        img.add(R.drawable.storage);
         title.add("Storage");
         subtitle.add("Allow you to upload documents and\n" +
                 "pictures for loan application");
+        img.add(R.drawable.camera);
         title.add("Camera");
         subtitle.add("Allow you to capture images of\n" +
                 "documents and pictures for loan\n" +
                 "application");
+        img.add(R.drawable.installed_apps);
         title.add("Installed Applications");
         subtitle.add("Collect list of apps installed in your device\n" +
                 "for credit profile enrichment");
@@ -116,5 +121,4 @@ public class SplashPermission extends AppCompatActivity {
             // permissions this app might request
         }
     }
-
 }
