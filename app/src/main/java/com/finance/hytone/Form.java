@@ -140,7 +140,6 @@ public class Form extends AppCompatActivity {
         Call<String> call;
         try {
 
-
             /*File ff = new File(getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath());
             if (!ff.exists())
                 ff.mkdir();
@@ -157,14 +156,11 @@ public class Form extends AppCompatActivity {
                     );
 
             //String items = "[1,2,4]";
-
             MultipartBody.Part body =
                     MultipartBody.Part.createFormData("fileToUpload", file.getName(), requestFile);
 
             //RequestBody items = RequestBody.create(MediaType.parse("application/json"), items);
             //RequestBody stringValue = RequestBody.create(MediaType.parse("text/plain"), stringValue);
-
-
 
             call = service.upload(body);
             call.enqueue(new Callback<String>() {
@@ -187,10 +183,7 @@ public class Form extends AppCompatActivity {
                         finish();
                         //JSONObject jo = new JSONObject(resBody);
                         //int response_code = Integer.parseInt(jo.getString("response_code"));
-
                         // if (response_code == 200) {
-
-
 
                     } catch (Exception e) {
                         Helper.showDialog(Form.this, false, "Something went wrong. " + e.getMessage(), "" + e.toString());

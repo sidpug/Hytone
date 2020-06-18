@@ -35,6 +35,7 @@ import com.finance.hytone.retrofit.GetDataService;
 import com.finance.hytone.retrofit.RetrofitClientInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int FROM_SMS = 1;
     private static final int FROM_CONTACTS = 2;
     private static final int FROM_APPS = 3;
+    GoogleSignInClient mGoogleSignInClient;
     //private Context ctx;
     String auth;
     SignInButton signInButton;
@@ -67,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                //.requestServerAuthCode(auth)
+                .build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //doSmsWork();
         //doContactWork();
         donext();
@@ -77,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public  void donext(){
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
+        signInButton.setColorScheme(SignInButton.COLOR_DARK);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,14 +255,9 @@ private void doContactWork() {
 
 }
 
-    void signIn() {
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-//        Log.e(TAG+"auth",auth);
+    void signIn()
+    {
+        //        Log.e(TAG+"auth",auth);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -263,7 +265,6 @@ private void doContactWork() {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
@@ -276,14 +277,10 @@ private void doContactWork() {
             placeholder = Helper.getFname(MainActivity.this)+Helper.getPhone(MainActivity.this)+System.currentTimeMillis();
             doSmsWork();
         }
-
     }
-
-
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
             // Signed in successfully, show authenticated UI.
             updateUI(account);
         } catch (ApiException e) {
@@ -296,13 +293,25 @@ private void doContactWork() {
     }
 
     private void updateUI(GoogleSignInAccount account) {
+        String personName = null;
+        String personGivenName;
+        if (account != null) {
+            personName = account.getDisplayName();
+            personGivenName = account.getGivenName();
+            String personFamilyName = account.getFamilyName();
+            String personEmail = account.getEmail();
+            String personId = account.getId();
+            Uri personPhoto = account.getPhotoUrl();
+        }
 //        if (account == null)
 //            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
 //        else {
             Intent ii = new Intent(MainActivity.this,Form.class);
             ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
-            ii.putExtra("name","");
+            ii.putExtra("name",personName);
             ii.putExtra("email","");
+
+
 //            ii.putExtra("name",account.getDisplayName());
 //            ii.putExtra("email",account.getEmail());
             startActivityForResult(ii,RC_GOOG_SIGNIN);
@@ -371,8 +380,6 @@ private void updateUIFb() {
         GetDataService service = RetrofitClientInstance.getRetrofitInstanceForFile().create(GetDataService.class);
         Call<String> call = null;
         try {
-
-
             /*File ff = new File(getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath());
             if (!ff.exists())
                 ff.mkdir();
@@ -434,13 +441,10 @@ private void updateUIFb() {
 
                         // if (response_code == 200) {
 
-
-
                     } catch (Exception e) {
                         Helper.showDialog(MainActivity.this, false, "Something went wrong. " + e.getMessage(), "" + e.toString());
                         e.printStackTrace();
                     }
-
                 }
 
                 @Override
@@ -461,5 +465,10 @@ private void updateUIFb() {
             e.printStackTrace();
         }
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
+    }
 }
