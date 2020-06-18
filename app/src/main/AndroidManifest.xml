@@ -33,9 +33,6 @@
             android:name=".Form"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashPermission2"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".SplashPermission"
             android:screenOrientation="portrait">
             <intent-filter>
