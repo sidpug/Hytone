@@ -8,14 +8,14 @@
     tools:context=".SplashPermission">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/next"
+        android:id="@+id/accept"
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="36dp"
         android:backgroundTint="#5352ED"
-        android:text="@string/next"
+        android:text="@string/accept"
         android:textColor="#FFFFFF"
         android:visibility="visible"
         app:cornerRadius="15dp"

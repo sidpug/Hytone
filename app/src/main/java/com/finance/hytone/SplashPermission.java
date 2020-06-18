@@ -2,11 +2,12 @@ package com.finance.hytone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.finance.hytone.adapters.CustomAdapter;
@@ -35,8 +36,10 @@ public class SplashPermission extends AppCompatActivity {
         subtitle = new ArrayList<>();
         img = new ArrayList<>();*/
         //add(title,subtitle,img);
+        adapter.addAll(t);
 
-        adapter.addAll();
+
+
         if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
             startActivity(new Intent(SplashPermission.this, MainActivity.class));
             finish();
@@ -45,6 +48,17 @@ public class SplashPermission extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SplashPermission.this, SplashPermission2.class));
+            }
+        });
+
+        findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Helper.putAccepted(SplashPermission.this, true);
+                if (Permission.checkAllPermissions(SplashPermission.this)) {
+                    startActivity(new Intent(SplashPermission.this, MainActivity.class));
+                } else
+                    Permission.permission(SplashPermission.this);
             }
         });
     }
@@ -82,4 +96,25 @@ public class SplashPermission extends AppCompatActivity {
         subtitle.add("Collect list of apps installed in your device\n" +
                 "for credit profile enrichment");
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1) {// If request is cancelled, the result arrays are empty.
+            if (Permission.checkAllPermissions(SplashPermission.this)) {
+
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+                Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
+                Log.e("log_case2", "GRANTED!");
+
+            } else {
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+                Toast.makeText(SplashPermission.this, "One or more Permissions denied", Toast.LENGTH_SHORT).show();
+                Log.e("log_case3", "NOT GRANTED!");
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
 }
