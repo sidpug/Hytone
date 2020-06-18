@@ -2,6 +2,7 @@ package com.finance.hytone;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class Permission {
             }
         } else {
             //permission is granted, continue with regular flow
+            activity.startActivity(new Intent());
             Log.e("log_case", "permission granted already!!!!");
 
 
@@ -73,12 +75,15 @@ public class Permission {
         Log.e("c" + (c++), "" + b);
 
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-        Log.e("c" + (c++), "" + b);
+        Log.e("c" +(c), "" + b);
 
+        if(b)
+            activity.startActivity(new Intent());
         return b;
+
     }
 
-    /** @Override public void onRequestPermissionsResult(int requestCode,
+    /* @Override public void onRequestPermissionsResult(int requestCode,
     String permissions[], int[] grantResults) {
     switch (requestCode) {
     case 1: {

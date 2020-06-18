@@ -30,7 +30,8 @@ import retrofit2.Response;
 
 public class Form extends AppCompatActivity {
 
-    private String login_type, name, email;
+    private String login_type;
+    private String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +49,10 @@ public class Form extends AppCompatActivity {
             pincode.setText(Helper.getPincode(this));
 
             login_type = getIntent().getStringExtra("login_type");
+            assert login_type != null;
             if (login_type.equals(Constants.LOGINTYPE_GOOGLE))
             {
-                name = getIntent().getStringExtra("name");
+                String name = getIntent().getStringExtra("name");
                 email = getIntent().getStringExtra("email");
                 //fname.setText(name);
             }
@@ -59,9 +61,7 @@ public class Form extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (login_type == null)
-                {
-
-                }
+                {}
                 else if (login_type.equals(Constants.LOGINTYPE_GOOGLE))
                 {
                     EditText phone, fname, lname, pincode;
@@ -137,7 +137,7 @@ public class Form extends AppCompatActivity {
         pd.show();
         Helper.log("params", "insidemeth");
         GetDataService service = RetrofitClientInstance.getRetrofitInstanceForFile().create(GetDataService.class);
-        Call<String> call = null;
+        Call<String> call;
         try {
 
 
@@ -171,7 +171,7 @@ public class Form extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     //findViewById(R.id.loadingContainer).setVisibility(GONE);
-pd.dismiss();
+                        pd.dismiss();
                     int rescode = response.code();
                     if (rescode != 200) {
                         HttpResponseUtils.showBasicResponseLogsString(response);
@@ -181,7 +181,7 @@ pd.dismiss();
                     Helper.log("passsed7", "here");
                     HttpResponseUtils.showBasicResponseLogsString(response);
                     try {
-                        String resBody = response.body().toString();
+                        String resBody = response.body();
                         //Toast.makeText(Form.this, ",,,,"+resBody, Toast.LENGTH_SHORT).show();
                         setResult(RESULT_OK);
                         finish();

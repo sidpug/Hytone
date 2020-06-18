@@ -3,26 +3,40 @@ package com.finance.hytone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ScrollView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.finance.hytone.adapters.CustomAdapter;
+import com.finance.hytone.model.PermModel;
 
 import java.util.ArrayList;
 
 public class SplashPermission extends AppCompatActivity {
 
-    private ScrollView Scroll;
     ArrayList<String> title,subtitle;
     ArrayList<Integer> img;
+    ArrayList<PermModel> perm;
+    CustomAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission);
-        title = new ArrayList<String>();
-        subtitle = new ArrayList<String>();
-        img = new ArrayList<Integer>();
+        ListView listView = findViewById(R.id.list_item);
         add(title,subtitle,img);
+        PermModel t =new PermModel(title,subtitle,img);
+        perm.add(t);
+        adapter = new CustomAdapter(this,perm);
+        listView.setAdapter(adapter);
+        /*title = new ArrayList<>();
+        subtitle = new ArrayList<>();
+        img = new ArrayList<>();*/
+        //add(title,subtitle,img);
+
+        adapter.addAll();
         if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
             startActivity(new Intent(SplashPermission.this, MainActivity.class));
             finish();
@@ -37,6 +51,7 @@ public class SplashPermission extends AppCompatActivity {
     void add(ArrayList<String> title,ArrayList<String> subtitle, ArrayList<Integer> img)
     {
         //img.add(R.drawable.);
+        //perm = new ArrayList<>();
         title.add("Sms");
         subtitle.add("Read and receive SMS to understand\n" +
                 "your income and spending patters for\n" +
@@ -61,7 +76,7 @@ public class SplashPermission extends AppCompatActivity {
                 "pictures for loan application");
         title.add("Camera");
         subtitle.add("Allow you to capture images of\n" +
-                "documents and pcitures for loan\n" +
+                "documents and pictures for loan\n" +
                 "application");
         title.add("Installed Applications");
         subtitle.add("Collect list of apps installed in your device\n" +
