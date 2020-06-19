@@ -1,5 +1,6 @@
 package com.finance.hytone;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -24,6 +25,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
@@ -46,6 +52,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,12 +63,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int FROM_SMS = 1;
     private static final int FROM_CONTACTS = 2;
     private static final int FROM_APPS = 3;
-    GoogleSignInClient mGoogleSignInClient;
     //private Context ctx;
     String auth;
     SignInButton signInButton;
-    Button loginButton;
-//    LoginButton loginButton;
+//    Button loginButton;
+    LoginButton loginButton;
     ShareDialog shareDialog;
     private String placeholder;
 
@@ -76,18 +82,19 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //doSmsWork();
         //doContactWork();
-        donext();
+        donext(mGoogleSignInClient);
         //uploadContent();
         //installedApps();
     }
-    public  void donext(){
+    @SuppressLint("WrongViewCast")
+    public  void donext(final GoogleSignInClient mGoogleSignInClient){
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setColorScheme(SignInButton.COLOR_DARK);
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                signIn(mGoogleSignInClient);
             }
         });
 
@@ -98,28 +105,27 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-//                    @Override
-//                    public void onSuccess(LoginResult loginResult) {
-//                        Toast.makeText(MainActivity.this, "Fb login SUCCESS!", Toast.LENGTH_LONG).show();
-//
-//                        LoginManager.getInstance().logInWithPublishPermissions(
-//                                MainActivity.this,
-//                                Collections.singletonList("publish_actions"));
-//                    }
-//
-//                    @Override
-//                    public void onCancel() {
-//                        // App code
-//                        Toast.makeText(MainActivity.this, "Fb login cancelled!", Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onError(FacebookException exception) {
-//                        // App code
-//                        Toast.makeText(MainActivity.this, "Fb login Error!", Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Toast.makeText(MainActivity.this, "Fb login SUCCESS!", Toast.LENGTH_LONG).show();
+                        LoginManager.getInstance().logInWithPublishPermissions(
+                                MainActivity.this,
+                                Collections.singletonList("publish_actions"));
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                        Toast.makeText(MainActivity.this, "Fb login cancelled!", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                        Toast.makeText(MainActivity.this, "Fb login Error!", Toast.LENGTH_LONG).show();
+                    }
+                });
                 shareDialog = new ShareDialog(MainActivity.this);
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
@@ -255,7 +261,7 @@ private void doContactWork() {
 
 }
 
-    void signIn()
+    void signIn(GoogleSignInClient mGoogleSignInClient)
     {
         //        Log.e(TAG+"auth",auth);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
