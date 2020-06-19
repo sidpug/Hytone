@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
+    android:theme="@style/Theme.MaterialComponents"
     android:visibility="visible"
     tools:context=".MainActivity"
     tools:visibility="visible">
@@ -53,6 +54,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="0dp"
@@ -60,9 +63,43 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="150dp"
+        android:text="@string/sign_up_with_google"
+        android:theme="@style/Theme.MaterialComponents"
+        android:visibility="invisible"
+        app:cornerRadius="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton"
+        tools:visibility="invisible" />
+    <Button
+
+        android:id="@+id/sign_in_google"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="150dp"
+        android:text="@string/sign_up_with_google"
+        android:drawableStart="@drawable/googleg_standard_color_18"
+        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg"
+            android:elevation="20dp"
+            app:layout_constraintStart_toStartOf="@+id/sign_in_google"
+            app:layout_constraintStart_toEndOf="@+id/sign_in_google"
+            app:layout_constraintBottom_toBottomOf="@id/sign_in_google"
+            />
+
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
