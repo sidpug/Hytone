@@ -28,6 +28,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
+        <activity android:name=".Form2"></activity>
         <activity android:name=".Welcome" />
         <activity
             android:name=".Form"

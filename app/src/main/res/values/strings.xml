@@ -13,6 +13,7 @@
     <string name="sign_up_with_google">Sign up with Google</string>
     <string name="this_is_a_short_three_line_description_for_this_feature_and_more">This is a short three-line description for this feature and more</string>
     <string name="feature_name_1">Feature Name 1</string>
+    <string name="email">Email</string>
 
 
 </resources>

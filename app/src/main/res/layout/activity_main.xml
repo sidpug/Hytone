@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    android:theme="@style/Theme.MaterialComponents"
     android:visibility="visible"
     tools:context=".MainActivity"
     tools:visibility="visible">
-
+    <!-- android:theme="@style/Theme.MaterialComponents" -->
     <!--    <com.facebook.login.widget.LoginButton-->
     <!--        android:id="@+id/sign_in_fb"-->
     <!--        android:layout_width="0dp"-->
