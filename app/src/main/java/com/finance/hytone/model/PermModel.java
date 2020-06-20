@@ -7,9 +7,8 @@ public class PermModel {
     public ArrayList<String> subtitle;
     public ArrayList<Integer> img;
 
-    public PermModel(ArrayList<String> title, ArrayList<String> subtitle, ArrayList<Integer> img)
-    {
-        this.title =title;
+    public PermModel(ArrayList<String> title, ArrayList<String> subtitle, ArrayList<Integer> img) {
+        this.title = title;
         this.subtitle = subtitle;
         this.img = img;
     }

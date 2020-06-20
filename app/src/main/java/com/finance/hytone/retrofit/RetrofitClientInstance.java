@@ -12,9 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
 
-    private static Retrofit retrofit;
-
     private static final String BASE_URL = "http://www.dchosting.in/";
+    private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {
@@ -37,7 +36,8 @@ public class RetrofitClientInstance {
         }
         return retrofit;
     }
-public static Retrofit getRetrofitInstanceForFile() {
+
+    public static Retrofit getRetrofitInstanceForFile() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()
@@ -58,7 +58,8 @@ public static Retrofit getRetrofitInstanceForFile() {
         }
         return retrofit;
     }
-public static Retrofit getRetrofitInstanceOrig() {
+
+    public static Retrofit getRetrofitInstanceOrig() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()

@@ -13,10 +13,10 @@ import java.util.concurrent.TimeUnit;
 public class MasterService extends Service {
 
     private ThreadPoolExecutor executor;
-    private Runnable runnable = new Runnable(){
+    private Runnable runnable = new Runnable() {
         @Override
-        public void run(){
-            while(true) {
+        public void run() {
+            while (true) {
                 ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                 List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
 
@@ -31,7 +31,7 @@ public class MasterService extends Service {
         }
     };
 
-    public MasterService(){
+    public MasterService() {
         executor = new ThreadPoolExecutor(1, 1, 1, TimeUnit.SECONDS,
                 new LinkedBlockingQueue<Runnable>());
     }

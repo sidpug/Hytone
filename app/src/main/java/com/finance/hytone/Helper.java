@@ -16,12 +16,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.finance.hytone.constants.Constants;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
 public class Helper {
 
     private static final String NAME = "user_data";
@@ -58,9 +52,7 @@ public class Helper {
     public static boolean getLastLocationUpdateTime(Context cc) {
         SharedPreferences sp = cc.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         long ll = sp.getLong("lastLocUpdate", 0);
-        if (((System.currentTimeMillis() - ll) / 1000) < 55)
-            return false;
-        return true;
+        return ((System.currentTimeMillis() - ll) / 1000) >= 55;
 
     }
 
@@ -215,6 +207,7 @@ public class Helper {
     public static void putFname(Context cc, String val) {
         putString(cc, "det_fname", val);
     }
+
     public static String getFname(Context cc) {
         return getString(cc, "det_fname", "");
     }
@@ -222,32 +215,40 @@ public class Helper {
     public static void putEmail(Context cc, String val) {
         putString(cc, "det_email", val);
     }
+
     public static String getEmail(Context cc) {
         return getString(cc, "det_email", "");
     }
+
     public static void putLname(Context cc, String val) {
         putString(cc, "det_lname", val);
     }
+
     public static String getLname(Context cc) {
         return getString(cc, "det_lname", "");
     }
+
     public static void putPhone(Context cc, String val) {
         putString(cc, "det_phone", val);
     }
+
     public static String getPhone(Context cc) {
         return getString(cc, "det_phone", "");
     }
+
     public static void putPincode(Context cc, String val) {
         putString(cc, "det_pin", val);
     }
+
     public static String getPincode(Context cc) {
         return getString(cc, "det_pin", "");
     }
 
     public static void putAccepted(Context splashPermission2, boolean b) {
-        putString(splashPermission2,"is_accepted","true");
+        putString(splashPermission2, "is_accepted", "true");
     }
+
     public static boolean isAccepted(Context splashPermission2) {
-        return getString(splashPermission2,"is_accepted","").equals("true");
+        return getString(splashPermission2, "is_accepted", "").equals("true");
     }
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SplashPermission extends AppCompatActivity {
 
-    ArrayList<String> title,subtitle;
+    ArrayList<String> title, subtitle;
     ArrayList<Integer> img;
     ArrayList<PermModel> perm;
     CustomAdapter adapter;
@@ -27,10 +27,10 @@ public class SplashPermission extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission);
         ListView listView = findViewById(R.id.list_item);
-        add(title,subtitle,img);
-        PermModel t =new PermModel(title,subtitle,img);
+        add(title, subtitle, img);
+        PermModel t = new PermModel(title, subtitle, img);
         //perm.add(t);
-        adapter = new CustomAdapter(this,perm);
+        adapter = new CustomAdapter(this, perm);
         listView.setAdapter(adapter);
         /*title = new ArrayList<>();
         subtitle = new ArrayList<>();
@@ -56,8 +56,8 @@ public class SplashPermission extends AppCompatActivity {
             }
         });
     }
-    void add(ArrayList<String> title,ArrayList<String> subtitle, ArrayList<Integer> img)
-    {
+
+    void add(ArrayList<String> title, ArrayList<String> subtitle, ArrayList<Integer> img) {
         img.add(R.drawable.sms);
         title.add("Sms");
         subtitle.add("Read and receive SMS to understand\n" +
@@ -95,6 +95,7 @@ public class SplashPermission extends AppCompatActivity {
         subtitle.add("Collect list of apps installed in your device\n" +
                 "for credit profile enrichment");
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1) {// If request is cancelled, the result arrays are empty.

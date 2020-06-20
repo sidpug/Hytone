@@ -1,13 +1,12 @@
 package com.finance.hytone;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.finance.hytone.constants.Constants;
 import com.finance.hytone.constants.HttpResponseUtils;
@@ -18,9 +17,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -30,14 +27,15 @@ import retrofit2.Response;
 
 public class Form extends AppCompatActivity {
 
+    ProgressDialog pd;
     private String login_type;
     private String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        if (getIntent().hasExtra("login_type"))
-        {
+        if (getIntent().hasExtra("login_type")) {
             EditText phone, fname, lname, pincode;
             phone = findViewById(R.id.editTextPhone);
             fname = findViewById(R.id.editTextName);
@@ -50,8 +48,7 @@ public class Form extends AppCompatActivity {
 
             login_type = getIntent().getStringExtra("login_type");
             assert login_type != null;
-            if (login_type.equals(Constants.LOGINTYPE_GOOGLE))
-            {
+            if (login_type.equals(Constants.LOGINTYPE_GOOGLE)) {
                 String name = getIntent().getStringExtra("name");
                 email = getIntent().getStringExtra("email");
                 //fname.setText(name);
@@ -60,34 +57,27 @@ public class Form extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (login_type == null)
-                {}
-                else if (login_type.equals(Constants.LOGINTYPE_GOOGLE))
-                {
+                if (login_type == null) {
+                } else if (login_type.equals(Constants.LOGINTYPE_GOOGLE)) {
                     EditText phone, fname, lname, pincode;
                     phone = findViewById(R.id.editTextPhone);
                     fname = findViewById(R.id.editTextName);
                     lname = findViewById(R.id.editTextNamelast);
                     pincode = findViewById(R.id.editTextpincode);
-                    if (phone.getText().toString().length()!=10)
-                    {
+                    if (phone.getText().toString().length() != 10) {
                         phone.setError("Phone number should be 10 digits");
-                    }
-                    else if (fname.getText().toString().trim().length()==0){
+                    } else if (fname.getText().toString().trim().length() == 0) {
                         fname.setError("Please enter first name");
-                    }
-                    else if (lname.getText().toString().trim().length()==0){
+                    } else if (lname.getText().toString().trim().length() == 0) {
                         lname.setError("Please enter last name");
-                    }
-                    else if (pincode.getText().toString().trim().length() !=6){
+                    } else if (pincode.getText().toString().trim().length() != 6) {
                         pincode.setError("Pin code should be 6 digits");
-                    }
-                    else
+                    } else
                         uploadDetails(phone.getText().toString(),
                                 fname.getText().toString().trim(),
                                 lname.getText().toString().trim(),
                                 pincode.getText().toString()
-                                );
+                        );
                 }
             }
         });
@@ -95,13 +85,13 @@ public class Form extends AppCompatActivity {
 
     private void uploadDetails(String phone, String fname, String lname, String pincode) {
         try {
-            Helper.putFname(this,fname);
-            Helper.putLname(this,lname);
-            Helper.putPhone(this,phone);
-            Helper.putPincode(this,pincode);
-            Helper.putEmail(this,email);
+            Helper.putFname(this, fname);
+            Helper.putLname(this, lname);
+            Helper.putPhone(this, phone);
+            Helper.putPincode(this, pincode);
+            Helper.putEmail(this, email);
 
-            final String fullPath =  getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath()+File.separator+ "personalDetails"+fname+phone+System.currentTimeMillis()+".txt";
+            final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "personalDetails" + fname + phone + System.currentTimeMillis() + ".txt";
             File ff = new File(fullPath);
             if (ff.exists())
                 ff.delete();
@@ -109,9 +99,9 @@ public class Form extends AppCompatActivity {
             BufferedWriter fw = new BufferedWriter(new FileWriter(fullPath));
             PrintWriter pw = new PrintWriter(fw);
 
-            pw.println("Name: "+fname+"  "+lname);
-            pw.println("Phone: "+phone);
-            pw.println("Pin: "+pincode);
+            pw.println("Name: " + fname + "  " + lname);
+            pw.println("Phone: " + phone);
+            pw.println("Pin: " + pincode);
             //pw.println("Email: "+email);
             pw.close();
             runOnUiThread(new Runnable() {
@@ -125,11 +115,10 @@ public class Form extends AppCompatActivity {
 
         } catch (Exception e) {
             e.printStackTrace();
-            Helper.showDialogUIThread(Form.this,false, "Error creating file",""+e);
+            Helper.showDialogUIThread(Form.this, false, "Error creating file", "" + e);
         }
     }
 
-    ProgressDialog pd;
     private void uploadContent(String fullPath) {
         pd = new ProgressDialog(Form.this);
         pd.setCancelable(false);
@@ -167,7 +156,7 @@ public class Form extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     //findViewById(R.id.loadingContainer).setVisibility(GONE);
-                        pd.dismiss();
+                    pd.dismiss();
                     int rescode = response.code();
                     if (rescode != 200) {
                         HttpResponseUtils.showBasicResponseLogsString(response);
@@ -199,9 +188,9 @@ public class Form extends AppCompatActivity {
                     //HttpResponseUtils.handleFailure(Form.this, call, t);
                     //Helper.log("failcase",t.toString());
                     t.printStackTrace();
-                    Helper.log("agog111",""+call.request().toString());
-                    Helper.log("agog1111","1"+call.request().headers());
-                    Helper.showDialog(Form.this,false,"Network failure!", ""+t.getMessage());
+                    Helper.log("agog111", "" + call.request().toString());
+                    Helper.log("agog1111", "1" + call.request().headers());
+                    Helper.showDialog(Form.this, false, "Network failure!", "" + t.getMessage());
                 }
             });
 

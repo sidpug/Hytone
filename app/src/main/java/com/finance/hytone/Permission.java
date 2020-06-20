@@ -75,9 +75,9 @@ public class Permission {
         Log.e("c" + (c++), "" + b);
 
         b = b && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-        Log.e("c" +(c), "" + b);
+        Log.e("c" + (c), "" + b);
 
-        if(b)
+        if (b)
             activity.startActivity(new Intent());
         return b;
 

