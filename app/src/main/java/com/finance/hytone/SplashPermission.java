@@ -29,7 +29,7 @@ public class SplashPermission extends AppCompatActivity {
         ListView listView = findViewById(R.id.list_item);
         add(title,subtitle,img);
         PermModel t =new PermModel(title,subtitle,img);
-        perm.add(t);
+        //perm.add(t);
         adapter = new CustomAdapter(this,perm);
         listView.setAdapter(adapter);
         /*title = new ArrayList<>();

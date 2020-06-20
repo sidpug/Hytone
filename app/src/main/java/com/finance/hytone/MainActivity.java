@@ -77,17 +77,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestProfile()
                 //.requestServerAuthCode(auth)
                 .build();
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //doSmsWork();
         //doContactWork();
-        donext(mGoogleSignInClient);
+        do_next(mGoogleSignInClient);
         //uploadContent();
         //installedApps();
     }
     @SuppressLint("WrongViewCast")
-    public  void donext(final GoogleSignInClient mGoogleSignInClient){
+    public  void do_next(final GoogleSignInClient mGoogleSignInClient){
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setColorScheme(SignInButton.COLOR_DARK);

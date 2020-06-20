@@ -21,6 +21,7 @@ public class ContactFetch {
         List<ContactModel> list = new ArrayList<>();
         ContentResolver contentResolver = ctx.getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        assert cursor != null;
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
@@ -28,15 +29,16 @@ public class ContactFetch {
                     Cursor cursorInfo = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
                             ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
                     InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(ctx.getContentResolver(),
-                            ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(id)));
+                            ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(id)));
 
-                    Uri person = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(id));
+                    Uri person = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, Long.parseLong(id));
                     Uri pURI = Uri.withAppendedPath(person, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
 
                     Bitmap photo = null;
                     if (inputStream != null) {
                         photo = BitmapFactory.decodeStream(inputStream);
                     }
+                    assert cursorInfo != null;
                     while (cursorInfo.moveToNext()) {
                         ContactModel info = new ContactModel();
                         info.id = id;
