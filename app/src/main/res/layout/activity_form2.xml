@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/Theme.MaterialComponents">
+    android:theme="@style/Theme.MaterialComponents.DayNight">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="70dp"
         android:orientation="vertical"
-        android:theme="@style/Theme.MaterialComponents">
+        android:theme="@style/Theme.MaterialComponents.DayNight">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
