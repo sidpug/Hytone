@@ -3,13 +3,38 @@ package com.finance.hytone.model;
 import java.util.ArrayList;
 
 public class PermModel {
-    public ArrayList<String> title;
-    public ArrayList<String> subtitle;
-    public ArrayList<Integer> img;
+    private String title;
+    private String subtitle;
+    private int img;
 
-    public PermModel(ArrayList<String> title, ArrayList<String> subtitle, ArrayList<Integer> img) {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSubtitle() {
+        return subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
+    }
+
+    public int getImg() {
+        return img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public PermModel(String title, String subtitle, int img) {
         this.title = title;
         this.subtitle = subtitle;
         this.img = img;
     }
+
 }

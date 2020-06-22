@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 public class SplashPermission extends AppCompatActivity {
 
-    ArrayList<String> title, subtitle;
-    ArrayList<Integer> img;
+
     ArrayList<PermModel> perm;
     CustomAdapter adapter;
 
@@ -27,23 +26,22 @@ public class SplashPermission extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission);
         ListView listView = findViewById(R.id.list_item);
-        add(title, subtitle, img);
-        PermModel t = new PermModel(title, subtitle, img);
-        //perm.add(t);
-        adapter = new CustomAdapter(this, perm);
-        listView.setAdapter(adapter);
-        /*title = new ArrayList<>();
-        subtitle = new ArrayList<>();
-        img = new ArrayList<>();*/
-        //add(title,subtitle,img);
-        adapter.addAll(t);
 
+        ArrayList<String> title = new ArrayList<>(), subtitle = new ArrayList<>();
+        ArrayList<Integer> img = new ArrayList<>();
+        perm = new ArrayList<>();
+        add(title, subtitle, img);
+
+        for (int i = 0; i < title.size(); i++)
+            perm.add(new PermModel(title.get(i), subtitle.get(i), img.get(i)));
+
+        adapter = new CustomAdapter(this, perm, title);
+        listView.setAdapter(adapter);
 
         if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
             startActivity(new Intent(SplashPermission.this, MainActivity.class));
             finish();
         }
-
 
         findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +98,6 @@ public class SplashPermission extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1) {// If request is cancelled, the result arrays are empty.
             if (Permission.checkAllPermissions(SplashPermission.this)) {
-
                 // permission was granted, yay! Do the
                 // contacts-related task you need to do.
                 Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
