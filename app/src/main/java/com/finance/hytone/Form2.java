@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.finance.hytone.constants.Constants;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,8 +31,40 @@ public class Form2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form2);
+        findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (handleSection1())
+                {
+                    submitForm();
+                }
+            }
+        });
     }
 
+    private void submitForm() {
+
+    }
+
+    public boolean handleSection1(){
+        //TextInputEditText etFname = findViewById(R.id.etFname);
+        String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
+        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
+        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
+        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
+        String error = null;
+        if (etFname.length()==0)
+            error = "Please enter your First name";
+        //else if(eLname..)
+
+
+        if (error!=null)
+        {
+            Helper.showdialog(Form2.this, true, "", error);
+            return false;
+        }
+        return true;
+    }
 
 
 
@@ -65,7 +98,7 @@ public class Form2 extends AppCompatActivity {
             }
 
     }
-
+    int previewImgResId=-1;
     private void onCaptureImageResult(Intent data, Bitmap thumbnail) {
         currentPhotoPath = null;
         bitm = thumbnail;
@@ -77,8 +110,8 @@ public class Form2 extends AppCompatActivity {
             return;
 
         }
-        ErrorLogger.log("insideonCaptureImageResult",""+factor);
-        ErrorLogger.log("insideonCaptureImageResult2",""+bitm.getWidth()+","+bitm.getHeight());
+        Helper.log("insideonCaptureImageResult",""+factor);
+        Helper.log("insideonCaptureImageResult2",""+bitm.getWidth()+","+bitm.getHeight());
 
         File destination = new File(Constants.PATH_HYTONE_FOLDER);
         if (!destination.exists())
@@ -100,7 +133,7 @@ public class Form2 extends AppCompatActivity {
             return;
         }
 
-        ImageView imageView = findViewById(your image view resource id);
+        ImageView imageView = findViewById(previewImgResId);
         imageView.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(bitm);
         Log.e("onacti1", "nothing");

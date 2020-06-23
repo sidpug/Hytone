@@ -285,6 +285,17 @@ public class Helper {
     }
 
 
-    public static void showdialog(Form2 form2, boolean b, String image_is_large, String s) {
+    public static void showdialog(Activity form2, boolean cancelable, String title, String msg) {
+        try{
+            AlertDialog.Builder adb = new AlertDialog.Builder(form2);
+            adb.setTitle(title);
+            adb.setMessage(msg);
+            adb.setCancelable(cancelable);
+            adb.setPositiveButton("OK", null);
+            adb.show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
