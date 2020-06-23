@@ -7,6 +7,16 @@
     tools:context=".Form">
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launch_foreground" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -23,144 +33,106 @@
         app:srcCompat="@mipmap/ic_launch_foreground"
         tools:srcCompat="@mipmap/ic_launch_foreground" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
-        android:ems="10"
-        android:hint="@string/mobile_number"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        android:maxLength="10"
-        app:layout_constraintBottom_toTopOf="@+id/editTextName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/mobile_number"
-        android:fontFamily="@font/hind_medium"
-        android:gravity="start"
-        android:text="@string/mobile_number"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
-        android:ems="10"
-        android:hint="@string/first_name"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNamelast"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="5dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/first_name"
-        android:fontFamily="@font/hind_medium"
-        android:gravity="start"
-        android:text="@string/first_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/editTextName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintVertical_bias="1.0" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="@string/mobile_number"
+                android:inputType="number|phone"
+                android:textColor="@color/black" />
 
-    <EditText
-        android:id="@+id/editTextNamelast"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="60dp"
-        android:ems="10"
-        android:hint="@string/last_name"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editTextpincode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/last_name"
-        android:fontFamily="@font/hind_medium"
-        android:gravity="start"
-        android:text="@string/last_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/editTextNamelast"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName"
-        app:layout_constraintVertical_bias="1.0" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="5dp"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white">
 
-    <EditText
-        android:id="@+id/editTextpincode"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="85dp"
-        android:ems="10"
-        android:maxLength="10"
-        android:hint="@string/Pincode"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/hind_medium"
+                android:hint="@string/first_name"
+                android:inputType="textPersonName|text"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/Pincode"
-        android:fontFamily="@font/hind_medium"
-        android:gravity="start"
-        android:text="@string/Pincode"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintBottom_toTopOf="@+id/editTextpincode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNamelast"
-        app:layout_constraintVertical_bias="1.0" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="5dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNamelast"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="@string/last_name"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#00000000"
+            android:layout_marginStart="5dp"
+            android:textColorHint="@color/black"
+            app:boxBackgroundColor="@color/white">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextpincode"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="@string/Pincode"
+                android:inputType="number"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2"
@@ -177,3 +149,83 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="24dp"
+android:layout_marginTop="95dp"
+android:layout_marginEnd="24dp"
+android:layout_marginBottom="20dp"
+android:contentDescription="@string/mobile_number"
+android:fontFamily="@font/hind_medium"
+android:gravity="start"
+android:text="@string/mobile_number"
+android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.0"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintVertical_bias="1.0" />
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="24dp"
+android:layout_marginEnd="24dp"
+android:layout_marginBottom="10dp"
+android:contentDescription="@string/first_name"
+android:fontFamily="@font/hind_medium"
+android:gravity="start"
+android:text="@string/first_name"
+android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+app:layout_constraintBottom_toTopOf="@+id/editTextName"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.0"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+app:layout_constraintVertical_bias="1.0" />
+
+
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="24dp"
+android:layout_marginEnd="24dp"
+android:layout_marginBottom="10dp"
+android:contentDescription="@string/last_name"
+android:fontFamily="@font/hind_medium"
+android:gravity="start"
+android:text="@string/last_name"
+android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+app:layout_constraintBottom_toTopOf="@+id/editTextNamelast"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.0"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextName"
+app:layout_constraintVertical_bias="1.0" />
+
+
+
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginStart="24dp"
+android:layout_marginEnd="24dp"
+android:layout_marginBottom="10dp"
+android:contentDescription="@string/Pincode"
+android:fontFamily="@font/hind_medium"
+android:gravity="start"
+android:text="@string/Pincode"
+android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+app:layout_constraintBottom_toTopOf="@+id/editTextpincode"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.0"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/editTextNamelast"
+app:layout_constraintVertical_bias="1.0" />-->

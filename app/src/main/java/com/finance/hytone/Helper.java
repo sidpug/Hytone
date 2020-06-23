@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.LocationManager;
 import android.os.Build;
 import android.provider.Settings;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import com.finance.hytone.constants.Constants;
+
+import java.io.ByteArrayOutputStream;
 
 public class Helper {
 
@@ -251,4 +254,35 @@ public class Helper {
     public static boolean isAccepted(Context splashPermission2) {
         return getString(splashPermission2, "is_accepted", "").equals("true");
     }
+
+    public static int getCompressFactor(Bitmap bitm, ByteArrayOutputStream bytes) {
+        int factor = 100;
+
+        ByteArrayOutputStream bytes2 = new ByteArrayOutputStream();
+
+        boolean ab = bitm.compress(Bitmap.CompressFormat.JPEG, 100, bytes2);
+        byte bytearray2[] = bytes2.toByteArray();
+
+        //
+        float mBytess = bytearray2.length / (1024f * 1024f);
+        Log.e("alhabibi3MB", "" + mBytess);
+
+
+
+        if (mBytess > 0.5) {
+            factor = (int) (0.5 * 100 / mBytess);
+        }
+
+        Log.e("compressedMB", factor + "," + ab + "," + mBytess);
+        ab = bitm.compress(Bitmap.CompressFormat.JPEG, factor, bytes);
+        byte[] bytearray = bytes.toByteArray();
+        mBytess = bytearray.length / (1024f * 1024f);
+        Log.e("compress2edMB", factor + "," + ab + "," + mBytess);
+
+        if (mBytess> Constants.LIMIT_IMAGE_SIZE_MB)
+            return -999;
+        return factor;
+    }
+
+
 }
