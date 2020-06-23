@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents">
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launch_foreground" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="120dp"
+        android:alpha="0.2"
+        android:contentDescription="@string/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@mipmap/ic_launch_foreground"
+        tools:srcCompat="@mipmap/ic_launch_foreground" />
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="570dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="Vehicle Number"
+                android:inputType="number|phone"
+                android:maxLength="10"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="Make"
+                android:inputType="number|phone"
+                android:maxLength="10"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#00000000"
+                android:fontFamily="@font/hind_medium"
+                android:hint="Model"
+                android:inputType="number|phone"
+                android:maxLength="10"
+                android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/front"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="40dp"
+            android:theme="@style/Theme.MaterialComponents"
+            android:contentDescription="FrontSide"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#5352ED"
+            android:text="Upload Front"
+            android:textColor="@color/white"
+            app:cornerRadius="14dp"
+            app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="40dp"
+            android:theme="@style/Theme.MaterialComponents"
+            android:contentDescription="BackSide"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#5352ED"
+            android:text="Upload Back"
+            android:textColor="@color/white"
+            app:cornerRadius="14dp"
+            app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
