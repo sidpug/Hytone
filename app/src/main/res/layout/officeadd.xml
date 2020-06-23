@@ -36,55 +36,55 @@
         tools:srcCompat="@mipmap/ic_launch_foreground" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:theme="@style/Theme.MaterialComponents"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_marginTop="60dp"
-            android:orientation="vertical"
-            android:theme="@style/Theme.MaterialComponents"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="25dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="#00000000"
-                android:textColorHint="@color/black">
+                android:fontFamily="@font/hind_medium"
+                android:hint="Profession"
+                android:inputType="number|phone"
+                android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="286dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:fontFamily="@font/hind_medium"
-                    android:hint="Profession"
-                    android:inputType="number|phone"
-                    android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="#00000000"
+            android:textColorHint="@color/black">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="25dp"
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:background="#00000000"
-                android:textColorHint="@color/black">
+                android:fontFamily="@font/hind_medium"
+                android:hint="Monthly Income"
+                android:inputType="number|phone"
+                android:textColor="@color/black" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="286dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="#00000000"
-                    android:fontFamily="@font/hind_medium"
-                    android:hint="Monthly Income"
-                    android:inputType="number|phone"
-                    android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="25dp"
@@ -179,7 +179,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-         <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="25dp"
@@ -229,14 +229,13 @@
             android:textColor="#FFFFFF"
             android:visibility="visible"
             app:cornerRadius="11dp"
-            app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
