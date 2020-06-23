@@ -12,11 +12,13 @@ import com.finance.hytone.constants.Constants;
 import com.finance.hytone.constants.HttpResponseUtils;
 import com.finance.hytone.retrofit.GetDataService;
 import com.finance.hytone.retrofit.RetrofitClientInstance;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -36,7 +38,7 @@ public class Form extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
         if (getIntent().hasExtra("login_type")) {
-            EditText phone, fname, lname, pincode;
+            TextInputEditText phone, fname, lname, pincode;
             phone = findViewById(R.id.editTextPhone);
             fname = findViewById(R.id.editTextName);
             lname = findViewById(R.id.editTextNamelast);
@@ -54,23 +56,23 @@ public class Form extends AppCompatActivity {
                 //fname.setText(name);
             }
         }
-        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (login_type == null) {
                 } else if (login_type.equals(Constants.LOGINTYPE_GOOGLE)) {
-                    EditText phone, fname, lname, pincode;
+                    TextInputEditText phone, fname, lname, pincode;
                     phone = findViewById(R.id.editTextPhone);
                     fname = findViewById(R.id.editTextName);
                     lname = findViewById(R.id.editTextNamelast);
                     pincode = findViewById(R.id.editTextpincode);
-                    if (phone.getText().toString().length() != 10) {
+                    if (Objects.requireNonNull(phone.getText()).toString().length() != 10) {
                         phone.setError("Phone number should be 10 digits");
-                    } else if (fname.getText().toString().trim().length() == 0) {
+                    } else if (Objects.requireNonNull(fname.getText()).toString().trim().length() == 0) {
                         fname.setError("Please enter first name");
-                    } else if (lname.getText().toString().trim().length() == 0) {
+                    } else if (Objects.requireNonNull(lname.getText()).toString().trim().length() == 0) {
                         lname.setError("Please enter last name");
-                    } else if (pincode.getText().toString().trim().length() != 6) {
+                    } else if (Objects.requireNonNull(pincode.getText()).toString().trim().length() != 6) {
                         pincode.setError("Pin code should be 6 digits");
                     } else
                         uploadDetails(phone.getText().toString(),
@@ -122,7 +124,7 @@ public class Form extends AppCompatActivity {
     private void uploadContent(String fullPath) {
         pd = new ProgressDialog(Form.this);
         pd.setCancelable(false);
-        pd.setMessage("Getting details1...");
+        pd.setMessage("Getting details");
         pd.show();
         Helper.log("params", "insidemeth");
         GetDataService service = RetrofitClientInstance.getRetrofitInstanceForFile().create(GetDataService.class);
@@ -199,5 +201,4 @@ public class Form extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

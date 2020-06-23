@@ -63,6 +63,7 @@
                 android:background="#00000000"
                 android:fontFamily="@font/hind_medium"
                 android:hint="@string/mobile_number"
+                android:maxLength="10"
                 android:inputType="number|phone"
                 android:textColor="@color/black" />
 
@@ -135,7 +136,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/submit"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -149,83 +150,3 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-<!--
-
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="24dp"
-android:layout_marginTop="95dp"
-android:layout_marginEnd="24dp"
-android:layout_marginBottom="20dp"
-android:contentDescription="@string/mobile_number"
-android:fontFamily="@font/hind_medium"
-android:gravity="start"
-android:text="@string/mobile_number"
-android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.0"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintVertical_bias="1.0" />
-
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="24dp"
-android:layout_marginEnd="24dp"
-android:layout_marginBottom="10dp"
-android:contentDescription="@string/first_name"
-android:fontFamily="@font/hind_medium"
-android:gravity="start"
-android:text="@string/first_name"
-android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-app:layout_constraintBottom_toTopOf="@+id/editTextName"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.0"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
-app:layout_constraintVertical_bias="1.0" />
-
-
-
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="24dp"
-android:layout_marginEnd="24dp"
-android:layout_marginBottom="10dp"
-android:contentDescription="@string/last_name"
-android:fontFamily="@font/hind_medium"
-android:gravity="start"
-android:text="@string/last_name"
-android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-app:layout_constraintBottom_toTopOf="@+id/editTextNamelast"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.0"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/editTextName"
-app:layout_constraintVertical_bias="1.0" />
-
-
-
-<TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginStart="24dp"
-android:layout_marginEnd="24dp"
-android:layout_marginBottom="10dp"
-android:contentDescription="@string/Pincode"
-android:fontFamily="@font/hind_medium"
-android:gravity="start"
-android:text="@string/Pincode"
-android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-app:layout_constraintBottom_toTopOf="@+id/editTextpincode"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.0"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/editTextNamelast"
-app:layout_constraintVertical_bias="1.0" />-->
