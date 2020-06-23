@@ -285,4 +285,6 @@ public class Helper {
     }
 
 
+    public static void showdialog(Form2 form2, boolean b, String image_is_large, String s) {
+    }
 }
