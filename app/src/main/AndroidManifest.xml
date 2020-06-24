@@ -16,6 +16,7 @@
     <uses-permission-sdk-23 android:name="android.permission.READ_SMS" />
 
     <uses-feature android:name="android.hardware.telephony" />
+    <uses-feature android:name="android.hardware.camera2" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +29,7 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
-        <activity android:name=".Form2"></activity>
+        <activity android:name=".Form2"/>
         <activity android:name=".Welcome" />
         <activity
             android:name=".Form"

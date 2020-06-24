@@ -185,7 +185,7 @@
 
             <include layout="@layout/bank_details" />
 
-            <include layout="@layout/assests" />
+            <include layout="@layout/assets" />
 
             <include layout="@layout/reference" />
 

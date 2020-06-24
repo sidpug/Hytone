@@ -15,12 +15,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passport_number"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Passport Number"
+            android:hint="@string/passport_number"
             android:inputType="number|phone"
             android:maxLength="10"
             android:textColor="@color/black" />
@@ -28,41 +29,41 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/front"
+        android:id="@+id/front_passport"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="40dp"
-        android:contentDescription="FrontSide"
+        android:contentDescription="@string/frontSide"
         android:theme="@style/Theme.MaterialComponents" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button3"
+        android:id="@+id/passport_f_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#5352ED"
-        android:text="Upload Front"
+        android:text="@string/upload_front"
         android:textColor="@color/white"
         app:cornerRadius="14dp"
         app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
 
     <ImageView
-        android:id="@+id/back"
+        android:id="@+id/back_passport"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="40dp"
-        android:contentDescription="BackSide"
+        android:contentDescription="@string/backside"
         android:theme="@style/Theme.MaterialComponents" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button2"
+        android:id="@+id/passport_b_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#5352ED"
-        android:text="Upload Back"
+        android:text="@string/upload_back"
         android:textColor="@color/white"
         app:cornerRadius="14dp"
         app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />

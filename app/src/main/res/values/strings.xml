@@ -27,7 +27,21 @@
     <string name="existing_emi_if_any">Existing EMI(if any)</string>
     <string name="company_name">Company Name</string>
     <string name="company_address">Company Address</string>
-
-
+    <string name="upload_front">Upload Front</string>
+    <string name="frontSide">frontSide</string>
+    <string name="backside">backSide</string>
+    <string name="upload_back">Upload Back</string>
+    <string name="aadhar_number">Aadhar Number</string>
+    <string name="pan_number">Pan Number</string>
+    <string name="voter_id_number">Voter ID Number</string>
+    <string name="dl_number">DL Number</string>
+    <string name="passport_number">Passport Number</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_number">Account Number</string>
+    <string name="ifsc_code">IFSC Code</string>
+    <string name="statement">Statement</string>
+    <string name="upload">Upload</string>
+    <string name="asset_name">Asset Name</string>
+    <string name="asset_value">Asset Value</string>
 
 </resources>

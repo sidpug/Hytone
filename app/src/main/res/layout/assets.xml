@@ -12,12 +12,70 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/an1"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Asset Name"
+            android:hint="@string/asset_name"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#00000000"
+        android:textColorHint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/av1"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#00000000"
+            android:fontFamily="@font/hind_medium"
+            android:hint="@string/asset_value"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#00000000"
+        android:textColorHint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/an2"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#00000000"
+            android:fontFamily="@font/hind_medium"
+            android:hint="@string/asset_name"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="#00000000"
+        android:textColorHint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/av2"
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="#00000000"
+            android:fontFamily="@font/hind_medium"
+            android:hint="@string/asset_value"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -31,13 +89,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/an3"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Asset Value"
-            android:inputType="textPersonName|text"
+            android:hint="@string/asset_name"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,70 +108,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/av3"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Asset Name"
-            android:inputType="number|phone"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="#00000000"
-        android:textColorHint="@color/black">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00000000"
-            android:fontFamily="@font/hind_medium"
-            android:hint="Asset Value"
-            android:inputType="textPersonName|text"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="#00000000"
-        android:textColorHint="@color/black">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00000000"
-            android:fontFamily="@font/hind_medium"
-            android:hint="Asset Name"
-            android:inputType="textPersonName|text"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="#00000000"
-        android:textColorHint="@color/black">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00000000"
-            android:fontFamily="@font/hind_medium"
-            android:hint="Asset value"
-            android:inputType="number|phone"
+            android:hint="@string/asset_value"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -14,12 +14,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bank_name"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Bank Nme"
+            android:hint="@string/bank_name"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -32,12 +33,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/acc_no"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Account Number"
+            android:hint="@string/account_number"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,33 +52,33 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ifsc_code"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="IFSC Code"
-            android:inputType="number|phone"
+            android:hint="@string/ifsc_code"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/front"
+        android:id="@+id/statement"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:contentDescription="Statement"
+        android:contentDescription="@string/statement"
         android:theme="@style/Theme.MaterialComponents" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button3"
+        android:id="@+id/statement_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#5352ED"
-        android:text="Upload"
+        android:text="@string/upload"
         android:textColor="@color/white"
         app:cornerRadius="14dp"
         app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
