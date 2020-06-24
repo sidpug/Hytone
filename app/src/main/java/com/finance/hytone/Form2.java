@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Objects;
 
 public class Form2 extends AppCompatActivity {
 
@@ -47,13 +48,35 @@ public class Form2 extends AppCompatActivity {
     }
 
     public boolean handleSection1(){
-        //TextInputEditText etFname = findViewById(R.id.etFname);
-        String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
-        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
-        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
-        //String etFname = ((TextInputEditText)findViewById(R.id.etFname)).getText().toString().trim();
+        String mob = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.mob)).getText()).toString().trim();
+        String fName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.fName)).getText()).toString().trim();
+        String lName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.lName)).getText()).toString().trim();
+        String nName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.nickName)).getText()).toString().trim();
+        String email = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.email)).getText()).toString().trim();
+        String dep = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.dependent)).getText()).toString().trim();
         String error = null;
-        if (etFname.length()==0)
+        if (fName.length()==0)
+            error = "Please enter your First name";
+        //else if(eLname..)
+
+
+        if (error!=null)
+        {
+            Helper.showdialog(Form2.this, true, "", error);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean handleSection2(){
+        String address = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.address)).getText()).toString().trim();
+        String fName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
+        String lName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
+        String nName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.nickName)).getText()).toString().trim();
+        String email = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.email)).getText()).toString().trim();
+        String dep = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.dependent)).getText()).toString().trim();
+        String error = null;
+        if (fName.length()==0)
             error = "Please enter your First name";
         //else if(eLname..)
 

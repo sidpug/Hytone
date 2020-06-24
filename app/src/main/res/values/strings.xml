@@ -15,6 +15,11 @@
     <string name="feature_name_1">Feature Name 1</string>
     <string name="email">Email</string>
     <string name="logo">Logo</string>
+    <string name="nickname">Nickname</string>
+    <string name="no_of_dependents">No of Dependents</string>
+    <string name="address">Address</string>
+    <string name="landmark">Landmark</string>
+    <string name="police_station">Police Station</string>
 
 
 </resources>

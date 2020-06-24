@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:theme="@style/Theme.MaterialComponents.DayNight">
 
-
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -34,19 +33,20 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@mipmap/ic_launch_foreground"
         tools:srcCompat="@mipmap/ic_launch_foreground" />
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="0dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-    <LinearLayout
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -56,6 +56,7 @@
                 android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mob"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -71,16 +72,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
-                android:textColorHint="@color/black"
-                android:background="#00000000">
+                android:background="#00000000"
+                android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFname"
+                    android:id="@+id/fName"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:fontFamily="@font/hind_medium"
                     android:background="#00000000"
+                    android:fontFamily="@font/hind_medium"
                     android:hint="@string/first_name"
                     android:inputType="textPersonName|text"
                     android:textColor="@color/black" />
@@ -95,6 +96,7 @@
                 android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lName"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -114,12 +116,13 @@
                 android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nickName"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:background="#00000000"
                     android:fontFamily="@font/hind_medium"
-                    android:hint="Nickname"
+                    android:hint="@string/nickname"
                     android:inputType="textPersonName|text"
                     android:textColor="@color/black" />
 
@@ -133,6 +136,7 @@
                 android:textColorHint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -148,50 +152,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
+                android:background="#00000000"
                 android:textColorHint="@color/black"
-                app:boxBackgroundColor="@color/white"
-                android:background="#00000000">
+                app:boxBackgroundColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dependent"
                     android:layout_width="286dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:background="#00000000"
                     android:fontFamily="@font/hind_medium"
-                    android:hint="No of Dependents"
+                    android:hint="@string/no_of_dependents"
                     android:inputType="number"
-                    android:textColor="@color/black"
-                    android:background="#00000000"/>
+                    android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
-<include
-    layout="@layout/address"
-    />
-<include
-    layout="@layout/officeadd"
-    />
-<include
-    layout="@layout/aadhar_number"
-    />
-<include
-    layout="@layout/pan_card"
-    />
-        <include
-            layout="@layout/voter_id"
-            />
-        <include
-            layout="@layout/driving_licence"
-            />
-        <include
-            layout="@layout/passport"
-            />
-        <include
-            layout="@layout/reference"
-            />
-        <include
-            layout="@layout/vehicle"
-            />
+
+            <include layout="@layout/address" />
+
+            <include layout="@layout/officeadd" />
+
+            <include layout="@layout/aadhar_number" />
+
+            <include layout="@layout/pan_card" />
+
+            <include layout="@layout/voter_id" />
+
+            <include layout="@layout/driving_licence" />
+
+            <include layout="@layout/passport" />
+
+            <include layout="@layout/bank_details" />
+
+            <include layout="@layout/assests" />
+
+            <include layout="@layout/reference" />
+
+            <include layout="@layout/vehicle" />
         </LinearLayout>
-</ScrollView>
+    </ScrollView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/accept"
@@ -210,14 +210,3 @@
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--<ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="380dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="120dp"
-            android:alpha="0.2"
-            android:contentDescription="@string/background"
-            app:srcCompat="@mipmap/ic_launch_foreground" />
-    -->
