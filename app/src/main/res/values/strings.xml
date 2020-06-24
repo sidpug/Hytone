@@ -20,6 +20,9 @@
     <string name="address">Address</string>
     <string name="landmark">Landmark</string>
     <string name="police_station">Police Station</string>
+    <string name="post_office">Post Office</string>
+    <string name="ownership_type">Ownership Type</string>
+    <string name="profession">Profession</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -70,16 +71,15 @@ public class Form2 extends AppCompatActivity {
 
     public boolean handleSection2(){
         String address = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.address)).getText()).toString().trim();
-        String fName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
-        String lName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
-        String nName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.nickName)).getText()).toString().trim();
-        String email = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.email)).getText()).toString().trim();
-        String dep = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.dependent)).getText()).toString().trim();
+        String landmark = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
+        String ps = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
+        String po = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.po)).getText()).toString().trim();
+        String pincode = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.pincode)).getText()).toString().trim();
+        String ownership_type = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ot)).getText()).toString().trim();
         String error = null;
-        if (fName.length()==0)
-            error = "Please enter your First name";
+        /*if (fName.length()==0)
+            error = "Please enter your First name";*/
         //else if(eLname..)
-
 
         if (error!=null)
         {
@@ -89,9 +89,25 @@ public class Form2 extends AppCompatActivity {
         return true;
     }
 
+    public boolean handleSection3(){
+        String address = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.address)).getText()).toString().trim();
+        String landmark = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
+        String ps = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
+        String po = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.po)).getText()).toString().trim();
+        String pincode = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.pincode)).getText()).toString().trim();
+        String ownership_type = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ot)).getText()).toString().trim();
+        String error = null;
+        /*if (fName.length()==0)
+            error = "Please enter your First name";*/
+        //else if(eLname..)
 
-
-
+        if (error!=null)
+        {
+            Helper.showdialog(Form2.this, true, "", error);
+            return false;
+        }
+        return true;
+    }
 
     private void cameraIntent() {
         try {
@@ -161,6 +177,13 @@ public class Form2 extends AppCompatActivity {
         imageView.setImageBitmap(bitm);
         Log.e("onacti1", "nothing");
         Log.e("onacti", "11");// + descimage);
+    }
+    public void requestFocus(View view)
+    {
+        if(view.requestFocus())
+        {
+            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
     }
 
 }

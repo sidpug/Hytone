@@ -73,12 +73,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/po"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Post Office"
+            android:hint="@string/post_office"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -92,6 +93,7 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pincode"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -111,31 +113,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ot"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Landmark"
-            android:inputType="number|phone"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="25dp"
-        android:background="#00000000"
-        android:textColorHint="@color/black">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="286dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00000000"
-            android:fontFamily="@font/hind_medium"
-            android:hint="Ownership Type"
+            android:hint="@string/ownership_type"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
