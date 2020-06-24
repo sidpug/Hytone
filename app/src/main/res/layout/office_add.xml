@@ -13,6 +13,7 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/profession"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -32,12 +33,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/mi"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Monthly Income"
+            android:hint="@string/monthly_income"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -51,12 +53,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emi"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Existing EMI(if any)"
+            android:hint="@string/existing_emi_if_any"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -70,12 +73,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cName"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Company Name"
+            android:hint="@string/company_name"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -89,12 +93,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cAddress"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Company Address"
+            android:hint="@string/company_address"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -108,12 +113,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cLandmark"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Landmark"
+            android:hint="@string/landmark"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -127,12 +133,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cPs"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Police Station"
+            android:hint="@string/police_station"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -146,12 +153,13 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cPo"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Post Office"
+            android:hint="@string/post_office"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -165,6 +173,7 @@
         android:textColorHint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cPincode"
             android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

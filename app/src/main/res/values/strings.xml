@@ -23,6 +23,11 @@
     <string name="post_office">Post Office</string>
     <string name="ownership_type">Ownership Type</string>
     <string name="profession">Profession</string>
+    <string name="monthly_income">Monthly Income</string>
+    <string name="existing_emi_if_any">Existing EMI(if any)</string>
+    <string name="company_name">Company Name</string>
+    <string name="company_address">Company Address</string>
+
 
 
 </resources>

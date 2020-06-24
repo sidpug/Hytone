@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class Form2 extends AppCompatActivity {
 
-    Bitmap bitm;
+    Bitmap bit;
     private static final int REQUEST_CAMERA = 107;
     Uri imageUri;
     String currentPhotoPath;
@@ -33,7 +33,7 @@ public class Form2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form2);
-        findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.submit_form2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (handleSection1())
@@ -90,12 +90,16 @@ public class Form2 extends AppCompatActivity {
     }
 
     public boolean handleSection3(){
-        String address = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.address)).getText()).toString().trim();
-        String landmark = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
-        String ps = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
-        String po = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.po)).getText()).toString().trim();
-        String pincode = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.pincode)).getText()).toString().trim();
-        String ownership_type = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ot)).getText()).toString().trim();
+        String profession = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.profession)).getText()).toString().trim();
+        String mi = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.mi)).getText()).toString().trim();
+        String emi = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.emi)).getText()).toString().trim();
+        String cName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cName)).getText()).toString().trim();
+        String cAddress = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cAddress)).getText()).toString().trim();
+        String cLandmark = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cLandmark)).getText()).toString().trim();
+        String cPs = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cPs)).getText()).toString().trim();
+        String cPo = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cPo)).getText()).toString().trim();
+        String cPincode = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.cPincode)).getText()).toString().trim();
+
         String error = null;
         /*if (fName.length()==0)
             error = "Please enter your First name";*/
@@ -140,17 +144,17 @@ public class Form2 extends AppCompatActivity {
     int previewImgResId=-1;
     private void onCaptureImageResult(Intent data, Bitmap thumbnail) {
         currentPhotoPath = null;
-        bitm = thumbnail;
+        bit = thumbnail;
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        final int factor = Helper.getCompressFactor(bitm, bytes);
+        final int factor = Helper.getCompressFactor(bit, bytes);
         if(factor<0){
-            bitm=null;
+            bit =null;
             Helper.showdialog(Form2.this,false,"Image is large","Image size is more than "+ Constants.LIMIT_IMAGE_SIZE2+"! Please attach image of lower size");
             return;
 
         }
         Helper.log("insideonCaptureImageResult",""+factor);
-        Helper.log("insideonCaptureImageResult2",""+bitm.getWidth()+","+bitm.getHeight());
+        Helper.log("insideonCaptureImageResult2",""+ bit.getWidth()+","+ bit.getHeight());
 
         File destination = new File(Constants.PATH_HYTONE_FOLDER);
         if (!destination.exists())
@@ -174,7 +178,7 @@ public class Form2 extends AppCompatActivity {
 
         ImageView imageView = findViewById(previewImgResId);
         imageView.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(bitm);
+        imageView.setImageBitmap(bit);
         Log.e("onacti1", "nothing");
         Log.e("onacti", "11");// + descimage);
     }
