@@ -102,6 +102,7 @@ public class SplashPermission extends AppCompatActivity {
                 // contacts-related task you need to do.
                 Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
                 Log.e("log_case2", "GRANTED!");
+                    startActivity(new Intent(SplashPermission.this,MainActivity.class));
 
             } else {
                 // permission denied, boo! Disable the

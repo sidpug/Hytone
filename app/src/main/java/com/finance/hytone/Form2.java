@@ -8,13 +8,16 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.finance.hytone.constants.Constants;
+import com.finance.hytone.filter.PanFilter;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
@@ -29,11 +32,15 @@ public class Form2 extends AppCompatActivity {
     private static final int REQUEST_CAMERA = 107;
     Uri imageUri;
     String currentPhotoPath;
+    private ImageView target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form2);
+        EditText pan_number = findViewById(R.id.pan_number);
+        pan_number.setFilters(new InputFilter[]{new PanFilter()});
+        aadhar();
         findViewById(R.id.submit_form2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,17 +128,19 @@ public class Form2 extends AppCompatActivity {
             ((TextInputEditText) findViewById(R.id.aadhar_number)).setError("Enter Valid Aadhar Number");
             requestFocus(findViewById(R.id.aadhar_number));
         }
-        ImageView front = findViewById(R.id.front_aadhar);
-        ImageView back = findViewById(R.id.back_aadhar);
+        final ImageView front = findViewById(R.id.front_aadhar);
+        final ImageView back = findViewById(R.id.back_aadhar);
         findViewById(R.id.aadhar_f_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                target = front;
                 cameraIntent();//TODO: here we have to pass the image view id to camera intent
             }
         });
         findViewById(R.id.aadhar_b_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                target = back;
                 cameraIntent(); // TODO: here we have to pass the image view id to camera intent
             }
         });
@@ -313,6 +322,7 @@ public class Form2 extends AppCompatActivity {
     }
 
     private void cameraIntent() {
+
         try {
             ContentValues values = new ContentValues();
             values.put(MediaStore.Images.Media.TITLE, "New Picture");
@@ -323,6 +333,7 @@ public class Form2 extends AppCompatActivity {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception e) {
+            e.printStackTrace();
             Toast.makeText(this, "Please provide write permissions from settings", Toast.LENGTH_SHORT).show();
         }
     }
@@ -350,6 +361,7 @@ public class Form2 extends AppCompatActivity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         final int factor = Helper.getCompressFactor(bit, bytes);
         if(factor<0){
+            target = null;
             bit =null;
             Helper.showdialog(Form2.this,false,"Image is large","Image size is more than "+ Constants.LIMIT_IMAGE_SIZE2+"! Please attach image of lower size");
             return;
@@ -373,14 +385,15 @@ public class Form2 extends AppCompatActivity {
             if (bb)
                 currentPhotoPath = destination.getAbsolutePath();
         } catch (Exception e) {
+            target = null;
             e.printStackTrace();
             Toast.makeText(this, "Error creating file!", Toast.LENGTH_LONG).show();
             return;
         }
 
-        ImageView imageView = findViewById(previewImgResId);
-        imageView.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(bit);
+        ////ImageView imageView = findViewById(previewImgResId);
+       // imageView.setVisibility(View.VISIBLE);
+        target.setImageBitmap(bit);
         Log.e("onacti1", "nothing");
         Log.e("onacti", "11");// + descimage);
     }

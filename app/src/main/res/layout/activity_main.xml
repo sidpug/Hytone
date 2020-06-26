@@ -35,7 +35,7 @@
         app:srcCompat="@mipmap/ic_launch_foreground"
         tools:srcCompat="@mipmap/ic_launch_foreground" />
 
-    <Button
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/sign_in_fb"
         android:layout_width="0dp"
         android:layout_height="40dp"

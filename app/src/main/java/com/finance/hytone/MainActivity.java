@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     //private Context ctx;
     String auth;
     SignInButton signInButton;
-    //    Button loginButton;
+       //Button loginButton;
     LoginButton loginButton;
     ShareDialog shareDialog;
     ProgressDialog pd;
@@ -85,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         //uploadContent();
         //installedApps();
     }
-
-    @SuppressLint("WrongViewCast")
     public void do_next(final GoogleSignInClient mGoogleSignInClient) {
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
@@ -310,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
 //        if (account == null)
 //            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
 //        else {
-        Intent ii = new Intent(MainActivity.this, Form.class);
+        Intent ii = new Intent(MainActivity.this, Form2.class);
         ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
         ii.putExtra("name", personName);
         ii.putExtra("email", "");
