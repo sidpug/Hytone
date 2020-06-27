@@ -37,7 +37,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:orientation="vertical"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,10 +49,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginStart="5dp"
-            android:background="#00000000"
+            android:background="@color/white"
             android:textColorHint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +60,7 @@
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#00000000"
+                android:background="@color/white"
                 android:fontFamily="@font/hind_medium"
                 android:hint="@string/mobile_number"
                 android:maxLength="10"
@@ -71,17 +71,18 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/white">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextName"
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@android:color/transparent"
                 android:fontFamily="@font/hind_medium"
                 android:hint="@string/first_name"
                 android:inputType="textPersonName|text"
@@ -91,10 +92,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
-            android:background="#00000000"
             android:textColorHint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +102,7 @@
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#00000000"
+                android:background="@android:color/transparent"
                 android:fontFamily="@font/hind_medium"
                 android:hint="@string/last_name"
                 android:inputType="textPersonName"
@@ -113,18 +113,18 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="#00000000"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
             android:layout_marginStart="5dp"
             android:textColorHint="@color/black"
-            app:boxBackgroundColor="@color/white">
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextpincode"
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="#00000000"
+                android:background="@android:color/transparent"
                 android:fontFamily="@font/hind_medium"
                 android:hint="@string/Pincode"
                 android:inputType="number"

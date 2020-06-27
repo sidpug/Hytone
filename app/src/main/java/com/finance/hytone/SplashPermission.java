@@ -49,6 +49,7 @@ public class SplashPermission extends AppCompatActivity {
                 Helper.putAccepted(SplashPermission.this, true);
                 if (Permission.checkAllPermissions(SplashPermission.this)) {
                     startActivity(new Intent(SplashPermission.this, MainActivity.class));
+                    finish();
                 } else
                     Permission.permission(SplashPermission.this);
             }
@@ -59,7 +60,7 @@ public class SplashPermission extends AppCompatActivity {
         img.add(R.drawable.sms);
         title.add("Sms");
         subtitle.add("Read and receive SMS to understand\n" +
-                "your income and spending patters for\n" +
+                "your income and spending patterns for\n" +
                 "determining your credit limit");
         img.add(R.drawable.location);
         title.add("Location");
@@ -103,6 +104,7 @@ public class SplashPermission extends AppCompatActivity {
                 Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
                 Log.e("log_case2", "GRANTED!");
                     startActivity(new Intent(SplashPermission.this,MainActivity.class));
+                    finish();
 
             } else {
                 // permission denied, boo! Disable the
