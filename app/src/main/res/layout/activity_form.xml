@@ -98,7 +98,7 @@
             android:textColorHint="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextNamelast"
+                android:id="@+id/editTextName_last"
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -120,7 +120,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextpincode"
+                android:id="@+id/editText_pincode"
                 android:layout_width="286dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

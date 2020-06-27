@@ -41,8 +41,8 @@ public class Form extends AppCompatActivity {
             TextInputEditText phone, fname, lname, pincode;
             phone = findViewById(R.id.editTextPhone);
             fname = findViewById(R.id.editTextName);
-            lname = findViewById(R.id.editTextNamelast);
-            pincode = findViewById(R.id.editTextpincode);
+            lname = findViewById(R.id.editTextName_last);
+            pincode = findViewById(R.id.editText_pincode);
             phone.setText(Helper.getPhone(this));
             fname.setText(Helper.getFname(this));
             lname.setText(Helper.getLname(this));
@@ -64,8 +64,8 @@ public class Form extends AppCompatActivity {
                     TextInputEditText phone, fname, lname, pincode;
                     phone = findViewById(R.id.editTextPhone);
                     fname = findViewById(R.id.editTextName);
-                    lname = findViewById(R.id.editTextNamelast);
-                    pincode = findViewById(R.id.editTextpincode);
+                    lname = findViewById(R.id.editTextName_last);
+                    pincode = findViewById(R.id.editText_pincode);
                     if (Objects.requireNonNull(phone.getText()).toString().length() != 10) {
                         phone.setError("Phone number should be 10 digits");
                     } else if (Objects.requireNonNull(fname.getText()).toString().trim().length() == 0) {
