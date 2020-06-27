@@ -74,10 +74,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .requestProfile()
+//                //.requestServerAuthCode(auth)
+//                .build();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestProfile()
-                //.requestServerAuthCode(auth)
+                //.requestServerAuthCode("660015915488-r4gfinuaq3rj9qf57hjt6t3bbgq3mrg8.apps.googleusercontent.com")
                 .build();
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //doSmsWork();
@@ -88,14 +92,21 @@ public class MainActivity extends AppCompatActivity {
     }
     public void do_next(final GoogleSignInClient mGoogleSignInClient) {
         signInButton = findViewById(R.id.sign_in_button);
+
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setColorScheme(SignInButton.COLOR_DARK);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.sign_in_google).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 signIn(mGoogleSignInClient);
             }
         });
+//        signInButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                signIn(mGoogleSignInClient);
+//            }
+//        });
 
         final CallbackManager callbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.sign_in_fb);
@@ -296,9 +307,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
+        Helper.log("updateui",""+account);
+
         String personName = null;
         String personGivenName;
         if (account != null) {
+            Helper.log("updateui1",""+account.getDisplayName());
+            Helper.log("updateui2",""+account.getEmail());
+            Helper.log("updateui3",""+account.getServerAuthCode());
+            Helper.log("updateui4",""+account.getIdToken());
             personName = account.getDisplayName();
             personGivenName = account.getGivenName();
             String personFamilyName = account.getFamilyName();
@@ -306,10 +323,10 @@ public class MainActivity extends AppCompatActivity {
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
         }
-//        if (account == null)
-//            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
-//        else {
-        Intent ii = new Intent(MainActivity.this, Form2.class);
+        if (account == null)
+            Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
+        else {
+        Intent ii = new Intent(MainActivity.this, Form.class);
         ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
         ii.putExtra("name", personName);
         ii.putExtra("email", "");
@@ -320,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(ii, RC_GOOG_SIGNIN);
         //Log.e("acctName", account.getDisplayName() + "");
         //Log.e("acctEmail", account.getEmail() + "");
-        // }
+         }
     }
 
     private void updateUIFb() {
@@ -472,6 +489,6 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        //updateUI(account);
     }
 }
