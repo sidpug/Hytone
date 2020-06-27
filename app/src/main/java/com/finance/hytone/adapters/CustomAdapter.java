@@ -21,14 +21,14 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends ArrayAdapter<String> {
 
-    private ArrayList<PermModel> permModel;
     Context c;
     /*String[] imgurls;
     int layout;*/
     LayoutInflater inflater;
+    private ArrayList<PermModel> permModel;
 
     public CustomAdapter(Activity context, ArrayList<PermModel> permModel, ArrayList<String> title) {
-        super(context, R.layout.list_item_simple,R.id.txt,title);
+        super(context, R.layout.list_item_simple, R.id.txt, title);
         this.c = context;
         this.permModel = permModel;
         /*this.layout = layout;

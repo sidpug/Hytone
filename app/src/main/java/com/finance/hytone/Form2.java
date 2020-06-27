@@ -1,7 +1,5 @@
 package com.finance.hytone;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.finance.hytone.constants.Constants;
 import com.finance.hytone.filter.PanFilter;
 import com.google.android.material.textfield.TextInputEditText;
@@ -24,14 +24,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class Form2 extends AppCompatActivity {
 
-    Bitmap bit;
     private static final int REQUEST_CAMERA = 107;
+    Bitmap bit;
     Uri imageUri;
     String currentPhotoPath;
+    int previewImgResId = -1;
     private ImageView target;
 
     @Override
@@ -44,8 +44,7 @@ public class Form2 extends AppCompatActivity {
         findViewById(R.id.submit_form2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (handleSection1() && aadhar() && pan() && voter_id() && dl() && passport() && bank())
-                {
+                if (handleSection1() && aadhar() && pan() && voter_id() && dl() && passport() && bank()) {
                     submitForm();
                 }
             }
@@ -56,7 +55,7 @@ public class Form2 extends AppCompatActivity {
 
     }
 
-    public boolean handleSection1(){
+    public boolean handleSection1() {
         String mob = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.mob)).getText()).toString().trim();
         String fName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.fName)).getText()).toString().trim();
         String lName = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.lName)).getText()).toString().trim();
@@ -64,20 +63,19 @@ public class Form2 extends AppCompatActivity {
         String email = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.email)).getText()).toString().trim();
         String dep = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.dependent)).getText()).toString().trim();
         String error = null;
-        if (fName.length()==0)
+        if (fName.length() == 0)
             error = "Please enter your First name";
         //else if(eLname..)
 
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean address(){
+    public boolean address() {
         String address = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.address)).getText()).toString().trim();
         String landmark = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.landmark)).getText()).toString().trim();
         String ps = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ps)).getText()).toString().trim();
@@ -89,15 +87,14 @@ public class Form2 extends AppCompatActivity {
             error = "Please enter your First name";*/
         //else if(eLname..)
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean office_address(){
+    public boolean office_address() {
         String profession = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.profession)).getText()).toString().trim();
         String mi = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.mi)).getText()).toString().trim();
         String emi = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.emi)).getText()).toString().trim();
@@ -113,8 +110,7 @@ public class Form2 extends AppCompatActivity {
             error = "Please enter your First name";*/
         //else if(eLname..)
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
@@ -145,15 +141,14 @@ public class Form2 extends AppCompatActivity {
             }
         });
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean pan(){
+    public boolean pan() {
         String pan_no = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.pan_number)).getText()).toString().trim();
         String error = null;
         if (pan_no.length() == 0 || pan_no.length() < 10)
@@ -174,18 +169,17 @@ public class Form2 extends AppCompatActivity {
             }
         });
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean voter_id(){
+    public boolean voter_id() {
         String voter_id_no = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.voter_id_number)).getText()).toString().trim();
         String error = null;
-        if (voter_id_no.length() == 0 )
+        if (voter_id_no.length() == 0)
             ((TextInputEditText) findViewById(R.id.voter_id_number)).setError("Enter Valid Voter Id Number");
 
         ImageView front = findViewById(R.id.front_voter_id);
@@ -203,18 +197,17 @@ public class Form2 extends AppCompatActivity {
             }
         });
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean dl(){
+    public boolean dl() {
         String dl_no = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.dl_no)).getText()).toString().trim();
         String error = null;
-        if (dl_no.length() == 0 )
+        if (dl_no.length() == 0)
             ((TextInputEditText) findViewById(R.id.dl_no)).setError("Enter Valid Driving Licence Number");
 
         ImageView front = findViewById(R.id.front_dl_no);
@@ -232,18 +225,17 @@ public class Form2 extends AppCompatActivity {
             }
         });
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean passport(){
+    public boolean passport() {
         String passport = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.passport_number)).getText()).toString().trim();
         String error = null;
-        if (passport.length() == 0 )
+        if (passport.length() == 0)
             ((TextInputEditText) findViewById(R.id.passport_number)).setError("Enter Valid Passport Number");
 
         ImageView front = findViewById(R.id.front_passport);
@@ -261,26 +253,25 @@ public class Form2 extends AppCompatActivity {
             }
         });
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean bank(){
+    public boolean bank() {
         String bankname = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.bank_name)).getText()).toString().trim();
         String acc_no = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.acc_no)).getText()).toString().trim();
         String ifsc = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.ifsc_code)).getText()).toString().trim();
         String error = null;
-        if (bankname.length() == 0 )
+        if (bankname.length() == 0)
             ((TextInputEditText) findViewById(R.id.bank_name)).setError("Enter Valid Bank Name");
 
-        if (acc_no.length() == 0 )
+        if (acc_no.length() == 0)
             ((TextInputEditText) findViewById(R.id.acc_no)).setError("Enter Valid Account Number");
 
-        if (ifsc.length() == 0 )
+        if (ifsc.length() == 0)
             ((TextInputEditText) findViewById(R.id.ifsc_code)).setError("Enter Valid Ifsc Code");
 
         ImageView front = findViewById(R.id.statement);
@@ -292,15 +283,14 @@ public class Form2 extends AppCompatActivity {
         });
 
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
         return true;
     }
 
-    public boolean assets(){
+    public boolean assets() {
         String asset1 = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.an1)).getText()).toString().trim();
         String a_value1 = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.av1)).getText()).toString().trim();
         String asset2 = Objects.requireNonNull(((TextInputEditText) findViewById(R.id.an2)).getText()).toString().trim();
@@ -313,8 +303,7 @@ public class Form2 extends AppCompatActivity {
             error = "Please enter your First name";*/
         //else if(eLname..)
 
-        if (error!=null)
-        {
+        if (error != null) {
             Helper.showdialog(Form2.this, true, "", error);
             return false;
         }
@@ -342,7 +331,7 @@ public class Form2 extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK )
+        if (requestCode == REQUEST_CAMERA && resultCode == RESULT_OK)
             try {
                 Bitmap thumbnail = MediaStore.Images.Media.getBitmap(
                         getContentResolver(), imageUri);
@@ -353,22 +342,20 @@ public class Form2 extends AppCompatActivity {
 
     }
 
-    int previewImgResId=-1;
-
     private void onCaptureImageResult(Intent data, Bitmap thumbnail) {
         currentPhotoPath = null;
         bit = thumbnail;
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         final int factor = Helper.getCompressFactor(bit, bytes);
-        if(factor<0){
+        if (factor < 0) {
             target = null;
-            bit =null;
-            Helper.showdialog(Form2.this,false,"Image is large","Image size is more than "+ Constants.LIMIT_IMAGE_SIZE2+"! Please attach image of lower size");
+            bit = null;
+            Helper.showdialog(Form2.this, false, "Image is large", "Image size is more than " + Constants.LIMIT_IMAGE_SIZE2 + "! Please attach image of lower size");
             return;
 
         }
-        Helper.log("insideonCaptureImageResult",""+factor);
-        Helper.log("insideonCaptureImageResult2",""+ bit.getWidth()+","+ bit.getHeight());
+        Helper.log("insideonCaptureImageResult", "" + factor);
+        Helper.log("insideonCaptureImageResult2", "" + bit.getWidth() + "," + bit.getHeight());
 
         File destination = new File(Constants.PATH_HYTONE_FOLDER);
         if (!destination.exists())
@@ -392,16 +379,14 @@ public class Form2 extends AppCompatActivity {
         }
 
         ////ImageView imageView = findViewById(previewImgResId);
-       // imageView.setVisibility(View.VISIBLE);
+        // imageView.setVisibility(View.VISIBLE);
         target.setImageBitmap(bit);
         Log.e("onacti1", "nothing");
         Log.e("onacti", "11");// + descimage);
     }
 
-    public void requestFocus(View view)
-    {
-        if(view.requestFocus())
-        {
+    public void requestFocus(View view) {
+        if (view.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }

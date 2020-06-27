@@ -29,7 +29,7 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
-        <activity android:name=".Form2"/>
+        <activity android:name=".Form2" />
         <activity android:name=".Welcome" />
         <activity
             android:name=".Form"
@@ -46,6 +46,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.finance.hytone.fileprovider"
