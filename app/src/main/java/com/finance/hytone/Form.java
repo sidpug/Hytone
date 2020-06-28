@@ -1,6 +1,7 @@
 package com.finance.hytone;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -104,6 +105,7 @@ public class Form extends AppCompatActivity {
             pw.println("Name: " + fname + "  " + lname);
             pw.println("Phone: " + phone);
             pw.println("Pin: " + pincode);
+            pw.println("Location: " + Helper.getLastLocation(getApplicationContext()));
             //pw.println("Email: "+email);
             pw.close();
             runOnUiThread(new Runnable() {
@@ -170,15 +172,18 @@ public class Form extends AppCompatActivity {
                     try {
                         String resBody = response.body();
                         //Toast.makeText(Form.this, ",,,,"+resBody, Toast.LENGTH_SHORT).show();
-                        setResult(RESULT_OK);
+                        //setResult(RESULT_OK);
+                        Intent ii = new Intent(Form.this,Welcome.class);
+                        startActivity(ii);
                         finish();
                         //JSONObject jo = new JSONObject(resBody);
                         //int response_code = Integer.parseInt(jo.getString("response_code"));
                         // if (response_code == 200) {
 
                     } catch (Exception e) {
-                        Helper.showDialog(Form.this, false, "Something went wrong. " + e.getMessage(), "" + e.toString());
+                       // Helper.showDialog(Form.this, false, "Something went wrong. " + e.getMessage(), "" + e.toString());
                         e.printStackTrace();
+                        finish();
                     }
 
                 }

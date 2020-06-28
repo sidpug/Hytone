@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import com.finance.hytone.constants.Constants;
+import com.finance.hytone.services.WorkerService;
 
 import java.io.ByteArrayOutputStream;
 
@@ -123,7 +124,8 @@ public class Helper {
     }
 
     public static void log(String tag, String val) {
-        Log.e(tag, val);
+        if (Constants.IS_DEBUG)
+            Log.e(tag, val);
     }
 
     public static void showDialogUIThread(final Activity activity, final boolean b, final String title, final String s) {
@@ -298,4 +300,40 @@ public class Helper {
             e.printStackTrace();
         }
     }
+
+    public static void logToast(Context applicationContext, String s) {
+        if (Constants.IS_DEBUG)
+        {
+            Toast.makeText(applicationContext, s, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public static int getBulkStatus(Context applicationContext) {
+        String ss = getString(applicationContext,"last_bulk_setting","");
+        if(ss.equals(""))
+            return WorkerService.NOTHING_DONE_YET;
+        else if(ss.equals(""+WorkerService.CONTACTS_DONE))
+            return WorkerService.CONTACTS_DONE;
+        else if(ss.equals(""+WorkerService.CALL_LOGS_DONE))
+            return WorkerService.CALL_LOGS_DONE;
+        else if (ss.equals(""+WorkerService.SMS_DONE))
+            return WorkerService.SMS_DONE;
+        else
+            return WorkerService.APPS_DONE;
+
+    }
+    public static void putBulkStatus(Context applicationContext,int flag) {
+        //String ss = getString(applicationContext,"last_bulk_setting","");
+        putString(applicationContext, "last_bulk_setting",""+flag);
+    }
+
+    public static void putLastLocation(Context context, String latlng) {
+        putString(context,"latlng",latlng);
+    }
+    public static String getLastLocation(Context context){
+        return getString(context,"latlng","");
+    }
+
+
+
 }

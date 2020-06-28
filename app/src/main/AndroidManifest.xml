@@ -9,6 +9,7 @@
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission-sdk-23 android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission-sdk-23 android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_CALL_LOG" />
     <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
     <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_NUMBERS" />
     <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
@@ -84,10 +85,14 @@
         </activity>
 
         <service
-            android:name=".MyLocationService"
+            android:name=".services.MyLocationService"
             android:enabled="true"
-            android:exported="true"
+            android:exported="false"
             tools:ignore="ExportedService" />
+         <service
+             android:name=".services.WorkerService"
+             android:exported="false"
+                />
     </application>
 
 </manifest>

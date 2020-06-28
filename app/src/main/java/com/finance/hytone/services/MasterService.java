@@ -1,9 +1,11 @@
-package com.finance.hytone;
+package com.finance.hytone.services;
 
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+
+import com.finance.hytone.OverlayActivity;
 
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;

