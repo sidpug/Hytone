@@ -7,7 +7,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -20,14 +20,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/profession"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -40,14 +40,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/monthly_income"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -60,14 +60,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/existing_emi_if_any"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -80,14 +80,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/company_name"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -100,14 +100,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/company_address"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -120,14 +120,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/landmark"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -140,14 +140,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/police_station"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -160,14 +160,14 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/post_office"
-            android:inputType="number|phone"
+            android:inputType="text"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -180,7 +180,7 @@
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
             android:hint="@string/Pincode"
-            android:inputType="number|phone"
+            android:inputType="number"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>

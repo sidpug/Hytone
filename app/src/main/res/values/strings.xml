@@ -43,5 +43,10 @@
     <string name="upload">Upload</string>
     <string name="asset_name">Asset Name</string>
     <string name="asset_value">Asset Value</string>
+    <string name="make">Make</string>
+    <string name="vehicle_number">Vehicle Number</string>
+    <string name="model">Model</string>
+    <string name="reference_name">Reference Name</string>
+    <string name="relation">Relation</string>
 
 </resources>

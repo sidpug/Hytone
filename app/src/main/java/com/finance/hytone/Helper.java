@@ -263,12 +263,11 @@ public class Helper {
         ByteArrayOutputStream bytes2 = new ByteArrayOutputStream();
 
         boolean ab = bitm.compress(Bitmap.CompressFormat.JPEG, 100, bytes2);
-        byte bytearray2[] = bytes2.toByteArray();
+        byte[] bytearray2 = bytes2.toByteArray();
 
         //
         float mBytess = bytearray2.length / (1024f * 1024f);
         Log.e("alhabibi3MB", "" + mBytess);
-
 
 
         if (mBytess > 0.5) {
@@ -281,22 +280,21 @@ public class Helper {
         mBytess = bytearray.length / (1024f * 1024f);
         Log.e("compress2edMB", factor + "," + ab + "," + mBytess);
 
-        if (mBytess> Constants.LIMIT_IMAGE_SIZE_MB)
+        if (mBytess > Constants.LIMIT_IMAGE_SIZE_MB)
             return -999;
         return factor;
     }
 
 
     public static void showdialog(Activity form2, boolean cancelable, String title, String msg) {
-        try{
+        try {
             AlertDialog.Builder adb = new AlertDialog.Builder(form2);
             adb.setTitle(title);
             adb.setMessage(msg);
             adb.setCancelable(cancelable);
             adb.setPositiveButton("OK", null);
             adb.show();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

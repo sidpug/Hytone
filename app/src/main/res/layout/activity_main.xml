@@ -53,7 +53,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="0dp"
@@ -68,8 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton"
-         />
+        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton" />
 
     <Button
         android:id="@+id/sign_in_google"
@@ -78,13 +76,13 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="150dp"
-        android:text="@string/sign_up_with_google"
         android:drawableStart="@drawable/googleg_standard_color_18"
-        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+        android:text="@string/sign_up_with_google"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:shapeAppearance="@style/Widget.MaterialComponents.Button.TextButton.Dialog">
 
     </Button>
 

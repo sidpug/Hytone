@@ -1,6 +1,5 @@
 package com.finance.hytone;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
@@ -13,7 +12,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     //private Context ctx;
     String auth;
     SignInButton signInButton;
-       //Button loginButton;
+    //Button loginButton;
     LoginButton loginButton;
     ShareDialog shareDialog;
     ProgressDialog pd;
@@ -118,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         //uploadContent();
         //installedApps();
     }
+
     public void do_next(final GoogleSignInClient mGoogleSignInClient) {
         signInButton = findViewById(R.id.sign_in_button);
 
@@ -336,15 +335,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        Helper.log("updateui",""+account);
+        Helper.log("updateui", "" + account);
 
         String personName = null;
         String personGivenName;
         if (account != null) {
-            Helper.log("updateui1",""+account.getDisplayName());
-            Helper.log("updateui2",""+account.getEmail());
-            Helper.log("updateui3",""+account.getServerAuthCode());
-            Helper.log("updateui4",""+account.getIdToken());
+            Helper.log("updateui1", "" + account.getDisplayName());
+            Helper.log("updateui2", "" + account.getEmail());
+            Helper.log("updateui3", "" + account.getServerAuthCode());
+            Helper.log("updateui4", "" + account.getIdToken());
             personName = account.getDisplayName();
             personGivenName = account.getGivenName();
             String personFamilyName = account.getFamilyName();
@@ -355,10 +354,10 @@ public class MainActivity extends AppCompatActivity {
         if (account == null)
             Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
         else {
-        Intent ii = new Intent(MainActivity.this, Form.class);
-        ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
-        ii.putExtra("name", personName);
-        ii.putExtra("email", "");
+            Intent ii = new Intent(MainActivity.this, Form2.class);
+            ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
+            ii.putExtra("name", personName);
+            ii.putExtra("email", "");
 
 
 //            ii.putExtra("name",account.getDisplayName());
@@ -369,7 +368,8 @@ public class MainActivity extends AppCompatActivity {
         //Log.e("acctName", account.getDisplayName() + "");
         //Log.e("acctEmail", account.getEmail() + "");
          }
-    }
+        }
+
 
     private void updateUIFb() {
 //        if (account == null)

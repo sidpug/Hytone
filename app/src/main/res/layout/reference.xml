@@ -6,7 +6,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -17,7 +17,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Reference Name"
+            android:hint="@string/reference_name"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -25,7 +25,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -36,7 +36,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Relation"
+            android:hint="@string/relation"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -44,7 +44,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -55,7 +55,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Phone Number"
+            android:hint="@string/mobile_number"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -63,7 +63,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -74,7 +74,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Reference Name"
+            android:hint="@string/reference_name"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -82,7 +82,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -93,7 +93,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Relation"
+            android:hint="@string/relation"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -101,7 +101,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -112,7 +112,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Phone Number"
+            android:hint="@string/mobile_number"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
@@ -120,7 +120,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -131,7 +131,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Reference Name"
+            android:hint="@string/reference_name"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -139,7 +139,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -150,7 +150,7 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Relation"
+            android:hint="@string/relation"
             android:inputType="textPersonName|text"
             android:textColor="@color/black" />
 
@@ -158,7 +158,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:background="#00000000"
         android:textColorHint="@color/black">
@@ -169,12 +169,11 @@
             android:layout_margin="10dp"
             android:background="#00000000"
             android:fontFamily="@font/hind_medium"
-            android:hint="Phone Number"
+            android:hint="@string/mobile_number"
             android:inputType="number|phone"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
 </LinearLayout>
