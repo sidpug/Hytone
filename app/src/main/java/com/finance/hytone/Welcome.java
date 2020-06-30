@@ -23,8 +23,23 @@ public class Welcome extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },2000);
+        }, 2000);
         finish();
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }
