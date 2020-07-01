@@ -48,5 +48,6 @@
     <string name="model">Model</string>
     <string name="reference_name">Reference Name</string>
     <string name="relation">Relation</string>
+    <string name="greeting1">Welcome to Hytone</string>
 
 </resources>
