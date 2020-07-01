@@ -210,6 +210,8 @@ ProgressDialog pd;
                     try {
                         String resBody = response.body();
                         Toast.makeText(Form2.this, "Done!", Toast.LENGTH_LONG).show();
+                        Helper.putFormWorkDone(Form2.this,"1");
+
                         Intent ii = new Intent(Form2.this,Welcome.class);
                         startActivity(ii);
                         finish();

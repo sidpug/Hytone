@@ -354,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
         if (account == null)
             Toast.makeText(MainActivity.this, "No Details Found", Toast.LENGTH_SHORT).show();
         else {
-            Intent ii = new Intent(MainActivity.this, Form2.class);
+            Intent ii = new Intent(MainActivity.this, Form.class);
             ii.putExtra("login_type", Constants.LOGINTYPE_GOOGLE);
             ii.putExtra("name", personName);
             ii.putExtra("email", "");

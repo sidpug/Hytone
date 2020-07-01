@@ -333,5 +333,11 @@ public class Helper {
     }
 
 
+    public static void putFormWorkDone(Activity ac, String s) {
+        putString(ac,"form_status",s);
+    }
+    public static boolean isFormWorkDone(Activity ac) {
+        return getString(ac,"form_status","").equals("1");
+    }
 
 }

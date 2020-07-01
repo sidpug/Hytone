@@ -172,6 +172,7 @@ public class Form extends AppCompatActivity {
                         String resBody = response.body();
                         //Toast.makeText(Form.this, ",,,,"+resBody, Toast.LENGTH_SHORT).show();
                         //setResult(RESULT_OK);
+                        Helper.putFormWorkDone(Form.this,"1");
                         Intent ii = new Intent(Form.this,Welcome.class);
                         startActivity(ii);
                         finish();
