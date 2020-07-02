@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.InputFilter;
 import android.util.Log;
@@ -17,6 +18,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import com.finance.hytone.constants.Constants;
 import com.finance.hytone.constants.HttpResponseUtils;
@@ -30,15 +37,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Objects;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Form2 extends AppCompatActivity {
 
@@ -46,6 +47,7 @@ public class Form2 extends AppCompatActivity {
     Bitmap bit;
     Uri imageUri;
     String currentPhotoPath;
+    int previewImgResId = -1;
     private ImageView target;
     String ss = "";
     @Override
@@ -149,7 +151,7 @@ public class Form2 extends AppCompatActivity {
     }
     private void submitForm() throws Exception {
         Toast.makeText(this, "Submitting!", Toast.LENGTH_LONG).show();
-        final String fullPath = Objects.requireNonNull(getExternalFilesDir(Environment.DIRECTORY_ALARMS)).getAbsolutePath() + File.separator + "form2Detail" + System.currentTimeMillis() + ".txt";
+        final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "form2Detail" + System.currentTimeMillis() + ".txt";
         File ff = new File(fullPath);
         if (ff.exists())
             ff.delete();
@@ -168,9 +170,9 @@ ProgressDialog pd;
         pd.setCancelable(false);
         pd.setMessage("Posting details");
         pd.show();
-        Helper.log("params", "inside_method");
+        Helper.log("params", "insidemeth");
         GetDataService service = RetrofitClientInstance.getRetrofitInstanceForFile().create(GetDataService.class);
-        Call<String> call;
+        Call<String> call = null;
         try {
 
             File file = new File(fullPath);
@@ -197,18 +199,18 @@ ProgressDialog pd;
                 public void onResponse(Call<String> call, Response<String> response) {
                     //findViewById(R.id.loadingContainer).setVisibility(GONE);
                     pd.dismiss();
-                    int re_code = response.code();
-                    if (re_code != 200) {
+                    int rescode = response.code();
+                    if (rescode != 200) {
                         HttpResponseUtils.showBasicResponseLogsString(response);
-                        HttpResponseUtils.processHeaderCode(Form2.this, re_code);
+                        HttpResponseUtils.processHeaderCode(Form2.this, rescode);
                         return;
                     }
-                    Helper.log("passed7", "here");
+                    Helper.log("passsed7", "here");
                     HttpResponseUtils.showBasicResponseLogsString(response);
                     try {
                         String resBody = response.body();
                         Toast.makeText(Form2.this, "Done!", Toast.LENGTH_LONG).show();
-                        Intent ii = new Intent(Form2.this, Welcome.class);
+                        Intent ii = new Intent(Form2.this,Welcome.class);
                         startActivity(ii);
                         finish();
                         //JSONObject jo = new JSONObject(resBody);
@@ -226,7 +228,7 @@ ProgressDialog pd;
                 public void onFailure(Call<String> call, Throwable t) {
                     //findViewById(R.id.loadingContainer).setVisibility(GONE);
                     //HttpResponseUtils.handleFailure(Form2.this, call, t);
-                    //Helper.log("fail_case",t.toString());
+                    //Helper.log("failcase",t.toString());
                     pd.dismiss();
                     t.printStackTrace();
                     Helper.log("agog111", "" + call.request().toString());
@@ -250,6 +252,7 @@ ProgressDialog pd;
         String error = null;
         if (fName.length() == 0)
             error = "Please enter your First name";
+        //else if(eLname..)
         else if (lName.length() == 0)
             error = "Please enter your last name";
         else if(nName.length() == 0)
@@ -286,6 +289,7 @@ ProgressDialog pd;
         String error = null;
         /*if (fName.length()==0)
             error = "Please enter your First name";*/
+        //else if(eLname..)
         if(address.length() == 0)
             error = "Please enter valid Address!";
         else if (landmark.length() == 0)
@@ -308,12 +312,12 @@ ProgressDialog pd;
         ss += "\n";
         ss += "\nPERSONAL ADDRESS";
         ss += "\n________________________";
-        ss += "\nAddress: " + address;
-        ss += "\nLandmark: " + landmark;
-        ss += "\nPolice Stn: " + ps;
-        ss += "\nPost Office: " + po;
-        ss += "\nPincode: " + pincode;
-        ss += "\nOwnership type: " + ownership_type;
+        ss += "\nAddress: "+address;
+        ss += "\nLandmark: "+landmark;
+        ss += "\nPolice Stn: "+ps;
+        ss += "\nPost Offic: "+po;
+        ss += "\nPincode: "+pincode;
+        ss += "\nOwnership type: "+ownership_type;
 
         return true;
     }
@@ -567,7 +571,7 @@ ProgressDialog pd;
         String error = null;
         /*if (fName.length()==0)
             error = "Please enter your First name";*/
-
+        //else if(eLname..)
         if (asset1.equals("") || a_value1.equals("") || asset2.equals("") || a_value2.equals(""))
             error = "Please enter all details of two assets at least";
         if (error != null) {
@@ -658,7 +662,7 @@ ProgressDialog pd;
         // imageView.setVisibility(View.VISIBLE);
         target.setImageBitmap(bit);
         Log.e("onacti1", "nothing");
-        Log.e("onacti", "11");//
+        Log.e("onacti", "11");// + descimage);
     }
 
     public void requestFocus(View view) {

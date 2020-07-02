@@ -1,6 +1,8 @@
 package com.finance.hytone;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +27,7 @@ public class SplashPermission extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_permission);
+
         ListView listView = findViewById(R.id.list_item);
 
         ArrayList<String> title = new ArrayList<>(), subtitle = new ArrayList<>();
@@ -38,6 +41,11 @@ public class SplashPermission extends AppCompatActivity {
         adapter = new CustomAdapter(this, perm, title);
         listView.setAdapter(adapter);
 
+        if (Helper.isFormWorkDone(SplashPermission.this))
+        {
+            startActivity(new Intent(SplashPermission.this, Welcome.class));
+            finish();
+        }
         if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
             startActivity(new Intent(SplashPermission.this, MainActivity.class));
             finish();
