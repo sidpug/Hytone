@@ -3,6 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.finance.hytone">
 
+    <uses-feature android:name="android.hardware.telephony" />
+    <uses-feature android:name="android.hardware.camera2" />
+
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission-sdk-23 android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission-sdk-23 android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_SMS" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -14,7 +31,7 @@
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
-        <activity android:name=".form2.OfficeAddressActivity"></activity>
+        <activity android:name=".form2.OfficeAddressActivity" />
         <activity android:name=".Form2" />
         <activity android:name=".Welcome" />
         <activity
@@ -32,7 +49,6 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -78,22 +94,5 @@
             android:name=".services.WorkerService"
             android:exported="false" />
     </application>
-    <uses-feature android:name="android.hardware.telephony" />
-    <uses-feature android:name="android.hardware.camera2" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission-sdk-23 android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission-sdk-23 android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_CALL_LOG" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_CONTACTS" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_NUMBERS" />
-
-    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
-    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
-
-    <uses-permission-sdk-23 android:name="android.permission.READ_SMS" />
 
 </manifest>
