@@ -7,12 +7,12 @@ package com.finance.hytone.form2;
 
     import com.finance.hytone.R;
 
-public class Asset extends AppCompatActivity {
+public class BankDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.assets);
+        setContentView(R.layout.bank_details);
     }
 }
 
