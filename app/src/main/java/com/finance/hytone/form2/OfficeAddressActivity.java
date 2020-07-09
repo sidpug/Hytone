@@ -14,3 +14,14 @@ public class OfficeAddressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_office_address);
     }
 }
+/**
+ adhaar no.
+ address
+ asset
+ bank detail
+ driving license
+ pan card
+ passport
+ reference
+ voter id
+ vehicle**/
