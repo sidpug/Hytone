@@ -15,6 +15,16 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
         <activity android:name=".form2.OfficeAddressActivity"></activity>
+        <activity android:name=".form2.Address"
+            ></activity>
+        <activity android:name=".form2.AdhaarNo"></activity>
+        <activity android:name=".form2.Asset"></activity>
+        <activity android:name=".form2.BankDetails"></activity>
+        <activity android:name=".form2.PanCard"></activity>
+        <activity android:name=".form2.Passport"></activity>
+        <activity android:name=".form2.Reference"></activity>
+        <activity android:name=".form2.Vehicle"></activity>
+        <activity android:name=".form2.VoterId"></activity>
         <activity android:name=".Form2" />
         <activity android:name=".Welcome" />
         <activity

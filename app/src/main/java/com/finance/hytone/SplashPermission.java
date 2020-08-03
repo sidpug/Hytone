@@ -48,8 +48,13 @@ public class SplashPermission extends AppCompatActivity {
             finish();
         }
         if (Permission.checkAllPermissions(SplashPermission.this) && Helper.isAccepted(SplashPermission.this)) {
-            startActivity(new Intent(SplashPermission.this, MainActivity.class));
-            finish();
+//            startActivity(new Intent(SplashPermission.this, MainActivity.class));
+//            finish();
+            Class resolvedClass = Helper.resolveNextActivity(SplashPermission.this);
+            if (resolvedClass!=null)
+                startActivity(new Intent(SplashPermission.this, resolvedClass));
+            else
+                Toast.makeText(this, "All work done!", Toast.LENGTH_LONG).show();
         }
 
         findViewById(R.id.accept).setOnClickListener(new View.OnClickListener() {

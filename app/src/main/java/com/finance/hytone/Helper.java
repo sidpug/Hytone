@@ -3,6 +3,7 @@ package com.finance.hytone;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import com.finance.hytone.form2.AdhaarNo;
 import com.finance.hytone.form2.DrivingLicense;
 import com.finance.hytone.form2.OfficeAddressActivity;
 import com.finance.hytone.form2.PanCard;
+import com.finance.hytone.form2.Reference;
 import com.finance.hytone.form2.Vehicle;
 import com.finance.hytone.form2.VoterId;
 import com.finance.hytone.services.WorkerService;
@@ -386,6 +388,9 @@ public class Helper {
         else if (!isVehicleDone(ac)){
             return Vehicle.class;
         }
+        else if (!isReferenceDone(ac)){
+            return Reference.class;
+        }
         else
             return null;
 
@@ -456,6 +461,12 @@ public class Helper {
     public static void putVehicleDone(Activity ac) {
         putString(ac,"form_vehicle","");
     }
+public static boolean isReferenceDone(Activity ac) {
+        return getString(ac,"form_refer","").equals("1");
+    }
+    public static void putReferenceDone(Activity ac) {
+        putString(ac,"form_refer","");
+    }
 
     public static void startNext(Activity ac) {
         Class resolvedClass = resolveNextActivity(ac);
@@ -482,5 +493,24 @@ public class Helper {
         pw.println(ss);
         pw.close();
         return fullPath;
+    }
+
+    public static void showdialogStayOrGoBack(final Activity ac, boolean cancelable, String title, String msg) {
+        try {
+            AlertDialog.Builder adb = new AlertDialog.Builder(ac);
+            adb.setTitle(title);
+            adb.setMessage(msg);
+            adb.setCancelable(cancelable);
+            adb.setPositiveButton("STAY", null);
+            adb.setNegativeButton("GO BACK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ac.finish();
+                }
+            });
+            adb.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class ApiUtils {
 
-    public static void uploadDetails(final Activity ac, String fullPath, final ProgressDialog pd){
+    public static void uploadDetails(final Activity ac, final String form_name, String fullPath, final ProgressDialog pd){
         GetDataService service = RetrofitClientInstance.getRetrofitInstanceForFile().create(GetDataService.class);
         Call<String> call = null;
         try {
@@ -63,6 +63,7 @@ public class ApiUtils {
                         Toast.makeText(ac, "Done!", Toast.LENGTH_LONG).show();
                         Helper.putBasicFormDone(ac);
 
+                        Helper.putString(ac,"form_"+form_name,"1");
                         Helper.startNext(ac);
 
 
@@ -81,7 +82,13 @@ public class ApiUtils {
                     t.printStackTrace();
                     Helper.log("agog111", "" + call.request().toString());
                     Helper.log("agog1111", "1" + call.request().headers());
-                    Helper.showDialog(ac, false, "Network failure!", "" + t.getMessage());
+
+                    //to be activated when api goes live
+                    //Helper.showDialog(ac, false, "Network failure!", "Please check your internet!" );
+
+                    //to be removed when api goes live
+                    Helper.putString(ac,"form_"+form_name,"1");
+                    Helper.startNext(ac);
                 }
             });
 

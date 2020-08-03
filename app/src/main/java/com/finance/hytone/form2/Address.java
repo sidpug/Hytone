@@ -1,6 +1,8 @@
 package com.finance.hytone.form2;
 
     import  androidx.appcompat.app.AppCompatActivity;
+    import androidx.appcompat.widget.Toolbar;
+    import androidx.core.view.GravityCompat;
     import okhttp3.MediaType;
     import okhttp3.MultipartBody;
     import okhttp3.RequestBody;
@@ -20,6 +22,7 @@ package com.finance.hytone.form2;
     import com.finance.hytone.R;
     import com.finance.hytone.SplashPermission;
     import com.finance.hytone.Welcome;
+    import com.finance.hytone.constants.Constants;
     import com.finance.hytone.constants.HttpResponseUtils;
     import com.finance.hytone.retrofit.GetDataService;
     import com.finance.hytone.retrofit.RetrofitClientInstance;
@@ -36,15 +39,31 @@ package com.finance.hytone.form2;
 public class Address extends AppCompatActivity {
 
     @Override
+    public void onBackPressed() {
+        Helper.showdialogStayOrGoBack(Address.this,true,"","You will lose data of this screen if you go back!");
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.address);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setPadding(0, 0, 0, 0);//for tab otherwise give space in tab
+        toolbar.setContentInsetsAbsolute(0, 0);
+        toolbar.setNavigationIcon(R.drawable.ic_chevron_left_24px);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //drawer.openDrawer(GravityCompat.START);
+                Helper.showdialogStayOrGoBack(Address.this,true,"","You will lose data of this screen if you go back!");
+            }
+        });
         findViewById(R.id.submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (address()){
                     try {
-                        String fullPath = Helper.makeFile(Address.this,"basic", ss);
+                        String fullPath = Helper.makeFile(Address.this, Constants.FORM_NAME_BASIC, ss);
                         uploadAddressDetails(fullPath);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -62,7 +81,8 @@ public class Address extends AppCompatActivity {
             pd.setMessage("Please wait...");
             pd.show();
             Helper.log("params", "insidemeth");
-            ApiUtils.uploadDetails(Address.this, fullPath, pd);
+            ApiUtils.uploadDetails(Address.this,Constants.FORM_NAME_BASIC, fullPath, pd);
+
     }
 
 
