@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
 
-    //private static final String BASE_URL = "http://www.dchosting.in/";
-    private static final String BASE_URL = "https://htf.simulacratech.in/api/auth/register/";
+    private static final String BASE_URL = "http://www.dchosting.in/";
+//    private static final String BASE_URL = "https://htf.simulacratech.in/api/auth/register/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitInstance() {

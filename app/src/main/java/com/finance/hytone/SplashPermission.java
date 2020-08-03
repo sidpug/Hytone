@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.finance.hytone.adapters.CustomAdapter;
+import com.finance.hytone.form2.Address;
 import com.finance.hytone.model.PermModel;
 
 import java.util.ArrayList;
@@ -109,9 +110,14 @@ public class SplashPermission extends AppCompatActivity {
             if (Permission.checkAllPermissions(SplashPermission.this)) {
                 // permission was granted, yay! Do the
                 // contacts-related task you need to do.
-                Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SplashPermission.this, "All permission GRANTED", Toast.LENGTH_SHORT).show();
                 Log.e("log_case2", "GRANTED!");
-                startActivity(new Intent(SplashPermission.this, MainActivity.class));
+//                startActivity(new Intent(SplashPermission.this, MainActivity.class));
+                Class resolvedClass = Helper.resolveNextActivity(SplashPermission.this);
+                if (resolvedClass!=null)
+                    startActivity(new Intent(SplashPermission.this, resolvedClass));
+                else
+                    Toast.makeText(this, "All work done!", Toast.LENGTH_SHORT).show();
                 finish();
 
             } else {

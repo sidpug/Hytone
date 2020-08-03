@@ -3,11 +3,13 @@ package com.finance.hytone;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.LocationManager;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,9 +18,21 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import com.finance.hytone.constants.Constants;
+import com.finance.hytone.form2.Address;
+import com.finance.hytone.form2.AdhaarNo;
+import com.finance.hytone.form2.DrivingLicense;
+import com.finance.hytone.form2.OfficeAddressActivity;
+import com.finance.hytone.form2.PanCard;
+import com.finance.hytone.form2.Vehicle;
+import com.finance.hytone.form2.VoterId;
 import com.finance.hytone.services.WorkerService;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Helper {
 
@@ -340,4 +354,133 @@ public class Helper {
         return getString(ac,"form_status","").equals("1");
     }
 
+    public static Class resolveNextActivity(Activity ac){
+        if(!isBasicFormDone(ac)){
+            //Intent ii = new Intent(ac, Address.class);
+            return Address.class;
+        }
+        else if(!isOfficeAddressDone(ac)){
+            return OfficeAddressActivity.class;
+        }
+        else if (!isAadharDone(ac)){
+            return AdhaarNo.class;
+        }
+        else if (!isPanDone(ac)){
+            return PanCard.class;
+            }
+        else if (!isVoterDone(ac)){
+            return VoterId.class;
+            }
+        else if (!isDLDone(ac)){
+            return DrivingLicense.class;
+        }
+        else if (!isPassportDone(ac)){
+            return AdhaarNo.class;
+        }
+        else if (!isBankDone(ac)){
+            return DrivingLicense.class;
+        }
+        else if (!isAssetsDone(ac)){
+            return AdhaarNo.class;
+        }
+        else if (!isVehicleDone(ac)){
+            return Vehicle.class;
+        }
+        else
+            return null;
+
+
+    }
+
+    public static boolean isBasicFormDone(Activity ac) {
+        return getString(ac,"form_basic","").equals("1");
+    }
+    public static void putBasicFormDone(Activity ac) {
+        putString(ac,"form_basic","");
+    }
+
+    public static boolean isOfficeAddressDone(Activity ac) {
+        return getString(ac,"form_office","").equals("1");
+    }
+
+    public static void putOfficeAddressDone(Activity ac) {
+        putString(ac,"form_office","");
+    }
+    public static boolean isAadharDone(Activity ac) {
+        return getString(ac,"form_aadhar","").equals("1");
+    }
+
+    public static void putAadharDone(Activity ac) {
+        putString(ac,"form_aadhar","");
+    }
+    public static boolean isPanDone(Activity ac) {
+        return getString(ac,"form_pan","").equals("1");
+    }
+    public static void putPanDone(Activity ac) {
+        putString(ac,"form_pan","");
+    }
+    public static boolean isVoterDone(Activity ac) {
+        return getString(ac,"form_voter","").equals("1");
+    }
+    public static void putVoterDone(Activity ac) {
+        putString(ac,"form_voter","");
+    }
+
+    public static boolean isPassportDone(Activity ac) {
+        return getString(ac,"form_passport","").equals("1");
+    }
+    public static void putPassportDone(Activity ac) {
+        putString(ac,"form_passport","");
+    }
+    public static boolean isDLDone(Activity ac) {
+        return getString(ac,"form_dl","").equals("1");
+    }
+    public static void putDLDone(Activity ac) {
+        putString(ac,"form_dl","");
+    }
+    public static boolean isBankDone(Activity ac) {
+        return getString(ac,"form_bank","").equals("1");
+    }
+    public static void putBankDone(Activity ac) {
+        putString(ac,"form_bank","");
+    }
+    public static boolean isAssetsDone(Activity ac) {
+        return getString(ac,"form_assets","").equals("1");
+    }
+    public static void putAssetsDone(Activity ac) {
+        putString(ac,"form_assets","");
+    }
+    public static boolean isVehicleDone(Activity ac) {
+        return getString(ac,"form_vehicle","").equals("1");
+    }
+    public static void putVehicleDone(Activity ac) {
+        putString(ac,"form_vehicle","");
+    }
+
+    public static void startNext(Activity ac) {
+        Class resolvedClass = resolveNextActivity(ac);
+        if (resolvedClass!=null)
+            ac.startActivity(new Intent(ac, resolvedClass));
+        else
+        {
+            Toast.makeText(ac, "All work done!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public static String makeFile(Activity ac, String filePrefix, String ss) throws IOException {
+        String fullPath = ac.getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + filePrefix + System.currentTimeMillis() + ".txt";
+        File ff = new File(fullPath);
+        if (ff.exists())
+            ff.delete();
+
+        BufferedWriter fw = null;
+
+        fw = new BufferedWriter(new FileWriter(fullPath));
+
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println(ss);
+        pw.close();
+        return fullPath;
+    }
 }
