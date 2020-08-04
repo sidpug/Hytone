@@ -24,13 +24,32 @@ public interface GetDataService {
     //})
     @FormUrlEncoded
     @POST("/api/auth/login")
-    Call<JsonObject> getLoginResponse(@Field("mobile") String mobile, @Field("password") String password);
+    Call<JsonObject> getLoginResponse(@Field("email") String email, @Field("password") String password);
 
 
     @Multipart
     @POST("/apis2/upload.php")
     Call<String> upload(@Part MultipartBody.Part file);
 
+    @FormUrlEncoded
+    @POST("/api/auth/register/")
+    Call<JsonObject> register(@Field("email") String email, @Field("name") String name, @Field("password") String password, @Field("confirm_password") String confirm_password);
+
+    @FormUrlEncoded
+    @POST("/api/auth/google/")
+    Call<JsonObject> googleLogin(@Field("id_token") String id_token);
+
+    @Multipart
+    @POST("/api/user/contacts/upload/")
+    Call<JsonObject> uploadContacts(@Part MultipartBody.Part contacts_file);//contacts_file
+
+//    @FormUrlEncoded
+//    @POST("/api/auth/login")
+//    Call<JsonObject> getLoginResponse(@Field("mobile") String mobile, @Field("password") String password);
+//
+//    @FormUrlEncoded
+//    @POST("/api/auth/login")
+//    Call<JsonObject> getLoginResponse(@Field("mobile") String mobile, @Field("password") String password);
 
 }
 
