@@ -81,6 +81,7 @@ public class Form extends AppCompatActivity {
                                 pincode.getText().toString()
                         );
                 }
+                startActivity(new Intent(Form.this, Welcome.class));
             }
         });
     }
@@ -93,7 +94,7 @@ public class Form extends AppCompatActivity {
             Helper.putPincode(this, pincode);
             Helper.putEmail(this, email);
 
-            final String fullPath = getExternalFilesDir(Environment.DIRECTORY_ALARMS).getAbsolutePath() + File.separator + "personalDetails" + fname + phone + System.currentTimeMillis() + ".txt";
+            final String fullPath = Objects.requireNonNull(getExternalFilesDir(Environment.DIRECTORY_ALARMS)).getAbsolutePath() + File.separator + "personalDetails" + fname + phone + System.currentTimeMillis() + ".txt";
             File ff = new File(fullPath);
             if (ff.exists())
                 ff.delete();
